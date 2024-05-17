@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/leanneduyck/Meet/static/css/main.f855e6bc.css",
+    "main.js": "/leanneduyck/Meet/static/js/main.b02e971d.js",
+    "static/js/453.4a9980c6.chunk.js": "/leanneduyck/Meet/static/js/453.4a9980c6.chunk.js",
+    "service-worker.js": "/leanneduyck/Meet/service-worker.js",
+    "static/media/logo.svg": "/leanneduyck/Meet/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
+    "index.html": "/leanneduyck/Meet/index.html",
+    "main.f855e6bc.css.map": "/leanneduyck/Meet/static/css/main.f855e6bc.css.map",
+    "main.b02e971d.js.map": "/leanneduyck/Meet/static/js/main.b02e971d.js.map",
+    "453.4a9980c6.chunk.js.map": "/leanneduyck/Meet/static/js/453.4a9980c6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.b02e971d.js"
+  ]
+}
