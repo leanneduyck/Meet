@@ -77,6 +77,7 @@ Given the user has previously searched for cities and events.
 When the user clicks/selects the chart button.
 Then the user sees a chart displaying previously searched data (cities, number of events).
 </p>
+<p>My Meet app will use Lambda serverless functions to (a) process real-time data such as user searches for cities/events, (b) manage authentication via AWS, and © automatic scaling based on user demand. This app is well-suited to serverless technology because it is a simpler app that doesn’t deal with sensitive data, and is run by a solo developer interested in cost-efficiency.</p>
 <p>This app is built using CRA. To replicate, do the following:</p>
 <ul>
   <li>1. In terminal, create new project: "npx create-react-app meet --template cra-template-pwa --use-npm"</li>
