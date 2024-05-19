@@ -29,17 +29,17 @@ Scenario 2: a user can expand an event to see details.
 Given the user sees an interesting event.
 When the user clicks/selects that event.
 Then the full details are shown.
-Scenario 3: a user can collapse an event to hide details. 
+Scenario 3: a user can collapse an event to hide details.
 Given the user has finished viewing the event’s details.
 When the user clicks the exit button, the user is returned to the full list of events.
 
 Feature 3: specify number of events.
 As a user,
 I should be able to specify the number of events
-So that I do not have to scroll through more than I wish. 
+So that I do not have to scroll through more than I wish.
 Scenario 1: when a user hasn’t specified a number, 32 events are shown by default.
 Given the user has specified a certain city to search events AND the user has not specified a certain number of events to display.
-When the user receives the list of events. 
+When the user receives the list of events.
 Then 32 events are shown by default.
 Scenario 2: a user can change the number of events displayed.
 Given the user has specified a certain city to search events AND the user has specified a certain number of events to be displayed in a prompt under the search bar.
@@ -49,7 +49,7 @@ Then that number of events will be shown.
 Feature 4: use the app when offline.
 As a user,
 I should be able to use the app when offline
-So that I can search for events/details when I am out exploring the city. 
+So that I can search for events/details when I am out exploring the city.
 Scenario 1: show cached data when there’s no internet connection.
 Given the user has no internet connection.
 When the user views cities/events previously viewed while the user had internet.
@@ -57,10 +57,10 @@ Then the user will see the cached data for these cities/events.
 Scenario 2: show error when user changes search settings (city, number of events).
 Given the user has no internet connection.
 When the user tries to search a city or event previously not viewed while the user had internet.
-Then the user will see an error message. 
+Then the user will see an error message.
 
 Feature 5: add an app shortcut to the home screen.
-As a user, 
+As a user,
 I should be able to add an app shortcut to my home screen
 So that I can more conveniently find and use the app.
 Scenario 1: a user can install the meet app as a shortcut on their device home screen.
@@ -76,6 +76,7 @@ Scenario 1: show a chart with the number of upcoming events in each city.
 Given the user has previously searched for cities and events.
 When the user clicks/selects the chart button.
 Then the user sees a chart displaying previously searched data (cities, number of events).
+
 </p>
 <p>My Meet app will use Lambda serverless functions to (a) process real-time data such as user searches for cities/events, (b) manage authentication via AWS, and © automatic scaling based on user demand. This app is well-suited to serverless technology because it is a simpler app that doesn’t deal with sensitive data, and is run by a solo developer interested in cost-efficiency.</p>
 <p>This app is built using CRA. To replicate, do the following:</p>
@@ -87,7 +88,7 @@ Then the user sees a chart displaying previously searched data (cities, number o
   <li>5. Add your homepage URL to package.json file (between "private" and "dependencies").</li>
   <li>6. In package.json, add to "scripts" section: "predeploy": "npm run build",
 "deploy": "gh-pages -d build"</li>
-  <li>7. Add remote URL, via terminal: "git init" , "git remote add origin https://github.com/leanneduyck/Meet.git"</li>
+  <li>7. Add remote URL, via terminal: "git init" , "git remote add origin https://github.com/leanneduyck/meet.git"</li>
   <li>8. Commit and push changes, via terminal: "git add ." , "git commit -m "First commit" , "git branch -M main" , "git push -u origin main"</li>
-  <li>9. Deploy, via terminal: "npm run deploy"</li>
+  <li>9. Deploy, via terminal: "sudo npm run deploy"</li>
 </ul>
