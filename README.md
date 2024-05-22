@@ -78,7 +78,8 @@ When the user clicks/selects the chart button.
 Then the user sees a chart displaying previously searched data (cities, number of events).
 
 </p>
-<p>My Meet app will use Lambda serverless functions to (a) process real-time data such as user searches for cities/events, (b) manage authentication via AWS, and © automatic scaling based on user demand. This app is well-suited to serverless technology because it is a simpler app that doesn’t deal with sensitive data, and is run by a solo developer interested in cost-efficiency.</p>
+<p>My Meet app uses Lambda serverless functions to (a) process real-time data such as user searches for cities/events, (b) manage authentication via AWS, and © automatic scaling based on user demand. This app is well-suited to serverless technology because it is a simpler app that doesn’t deal with sensitive data, and is run by a solo developer interested in cost-efficiency.</p>
+<p>Website: https://leanneduyck.github.io/meet/</p>
 <p>This app is built using CRA. To replicate, do the following:</p>
 <ul>
   <li>1. In terminal, create new project: "npx create-react-app meet --template cra-template-pwa --use-npm"</li>
@@ -91,4 +92,20 @@ Then the user sees a chart displaying previously searched data (cities, number o
   <li>7. Add remote URL, via terminal: "git init" , "git remote add origin https://github.com/leanneduyck/meet.git"</li>
   <li>8. Commit and push changes, via terminal: "git add ." , "git commit -m "First commit" , "git branch -M main" , "git push -u origin main"</li>
   <li>9. Deploy, via terminal: "sudo npm run deploy"</li>
+</ul>
+<p>Set up OAuth in Google, add Google Calendar API, manually add scope: https://www.googleapis.com/auth/calendar.events.public.readonly”</p>
+<p>Set up AWS Lambda, Serverless Toolkit</p>
+<ul>
+<li>1. "npm install -g serverless"</li>
+<li>2. Create serverless service: "serverless create --template aws-nodejs --path auth-server
+", "cd auth-server
+", "npm init"</li>
+<li>3. Check to make sure that handler.js and serverless.yml files have been added</li>
+<li>4. Configure AWS credentials: create new access key, then "serverless config credentials --provider aws --key ACCESS_KEY_ID --secret SECRET_ACCESS_KEY" but change key_id and access_key to what google oauth gave</li>
+</ul>
+<ul>
+<p>Configuring</p>
+<li>1. Create config.json file within "auth-server" folder ("touch config.json" in terminal), then add client_id and client_secret from Google Calendar API. Add config.json to .gitignore inside auth-server folder.</li>
+<li>2. Set up serverless.yml file, provider and functions sections.</li>
+<li>3. Install Google APIs Pkg: while inside auth-server folder, "npm install googleapis --save"</li>
 </ul>
