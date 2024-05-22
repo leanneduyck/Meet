@@ -109,3 +109,15 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <li>2. Set up serverless.yml file, provider and functions sections.</li>
 <li>3. Install Google APIs Pkg: while inside auth-server folder, "npm install googleapis --save"</li>
 </ul>
+<ul>
+<p>Local Testing</p>
+<li>1. Within "auth-server" folder terminal, "serverless invoke local --function *functionName*"</li>
+<li>2. Copy received URL fromAndIncluding "https://" untilButExcluding "\", paste into google and see if it works!</li>
+<li>3. Make sure to use the TestUser email set when setting up Google OAuth.</li>
+</ul>
+<p>Deploying Functions</p>
+<ul>
+<p>1. Within "auth-server" folder terminal, "serverless deploy"</p>
+<p>2. Can check that the function has been correctly deployed to Lambda by logging into your AWS Management Console, deployed Lambda Functions</p>
+</ul>
+<p>For OAuth2, need the following serverless functions: getAuthURL, getAccessToken, getCalendarEvents</p>
