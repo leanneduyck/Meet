@@ -121,3 +121,12 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <p>2. Can check that the function has been correctly deployed to Lambda by logging into your AWS Management Console, deployed Lambda Functions</p>
 </ul>
 <p>For OAuth2, need the following serverless functions: getAuthURL, getAccessToken, getCalendarEvents</p>
+<p>Static Site to test Serverless Functions</p>
+<ul>
+<li>1. Set up local Node.js HTTP server: "npm install http-server -g", once installed "http-server" automatically starts server</li>
+<li>2. Create a Simple HTML file:</li>
+<li>a. Make sure server isn't running. Then. Create a new static-site-test folder: "mkdir static-test-site", then navigate into it: "cd static-test-site"</li>
+<li>b. Create a new HTML file called test-auth-server.html: "touch test-auth-server.html", write according to 4.3 instructions.</li>
+<li>c. To test, run "http-server" within static-site-test folder, then visit one of the available URLs and click tests for endpoints.</li>
+<li>c1. Code for token code input is found in Meet app's URL after "code="</li>
+</ul>
