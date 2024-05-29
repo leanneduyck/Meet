@@ -130,3 +130,9 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <li>c. To test, run "http-server" within static-site-test folder, then visit one of the available URLs and click tests for endpoints.</li>
 <li>c1. Code for token code input is found in Meet app's URL after "code="</li>
 </ul>
+<p>TDD Testing</p>
+<ul>
+<li>Within _tests_ / App.test.js, write tests, then run "npm run test" (make sure to be within file you want to test)</li>
+<li>Testing is done using JEST, after first running "npm run test", JEST will watch and rerun test every time file is saved.</li>
+<li>Run "npm test -- --coverage" to see coverage rate for each component, goal is 70-100%.</li>
+</ul>
