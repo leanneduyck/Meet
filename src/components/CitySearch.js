@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const CitySearch = ({ allLocations }) => {
   // state to show or hide suggestions, store the user input, and store the list of suggestions
@@ -14,7 +14,7 @@ const CitySearch = ({ allLocations }) => {
           return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         })
       : [];
-
+    setShowSuggestions(true)
     setQuery(value);
     setSuggestions(filteredLocations);
   };
@@ -26,11 +26,16 @@ const CitySearch = ({ allLocations }) => {
     setShowSuggestions(false);
   };
 
+  useEffect(() => {
+    setSuggestions(allLocations);
+  }, [allLocations]);
+
   // returns a text input field and a list of suggestions, which are hidden by default, and appear when the text input field gains focus
   // and are updated as the user types in the text input field, and a list item to see all cities
   return (
-    <div id="city-search">
+    <div id="city-search" data-testid="city-search">
       <input
+        data-testid="city-search-input"
         type="text"
         className="city"
         placeholder="Search for a city"
@@ -39,15 +44,15 @@ const CitySearch = ({ allLocations }) => {
         onChange={handleInputChanged}
       />
       {showSuggestions ? (
-        <ul className="suggestions">
+        <ul className="suggestions" data-testid="suggestions">
           {suggestions.map((suggestion) => {
             return (
-              <li onClick={handleItemClicked} key={suggestion}>
+              <li data-testid={"suggestion"} onClick={handleItemClicked} key={suggestion}>
                 {suggestion}
               </li>
             );
           })}
-          <li key="See all cities" onClick={handleItemClicked}>
+          <li data-testid={"suggestion"} key="See all cities" onClick={handleItemClicked}>
             <b>See all cities</b>
           </li>
         </ul>

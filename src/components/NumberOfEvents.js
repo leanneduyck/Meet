@@ -15,6 +15,7 @@ const NumberOfEvents = ({ updateEvents }) => {
   return (
     <div id="number-of-events">
       <input
+        data-testid="number-of-events"
         type="text"
         className="number-of-events"
         placeholder="Number of events"
