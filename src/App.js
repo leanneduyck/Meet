@@ -55,11 +55,10 @@ const App = () => {
   const [currentNOE, setCurrentNOE] = useState(32);
   const [currentCity, setCurrentCity] = useState('See all cities');
 
-  // fetches the list of all events when the app is mounted and rendered, is called whenever the current city changes
-  // trying this without [currentCity] in useEffect due to failing test
+  // fetches the list of all events when the app is mounted and rendered, is called whenever the current city changes, and is called whenever the current number of events to display changes
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [currentCity, currentNOE]);
 
   // fetches the list of all events, filtered by the current city and number of events to display
   const fetchData = async () => {

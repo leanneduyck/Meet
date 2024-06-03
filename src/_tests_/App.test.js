@@ -58,7 +58,7 @@
 
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { getEvents } from '../api';
+import { getEvents, NumberOfEvents } from '../api';
 import App from '../App';
 
 describe('<App /> component', () => {
@@ -117,5 +117,32 @@ test('renders a list of events matching the city selected by the user', async ()
   // test that all rendered events have the correct location
   allRenderedEventItems.forEach((event) => {
     expect(event.textContent).toContain('Berlin, Germany');
+  });
+
+  // test that App integrates correctly with NumberOfEvents and EventList
+  test('renders the correct number of events when the user changes the number of events', async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+
+    // reference the NumberOfEvents component and input element
+    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+    const NumberOfEventsInput =
+      within(NumberOfEventsDOM).queryByRole('textbox');
+
+    // simulate user typing "10" in the NumberOfEvents input element after backspacing the default value of "32"
+    await user.type(NumberOfEventsInput, "{backspace}{backspace}'10");
+
+    // queries the EventList component and all rendered event items
+    const EventListDOM = AppDOM.querySelector('#event-list');
+    const allRenderedEventItems =
+      within(EventListDOM).queryAllByRole('listitem');
+
+    // get all events and filter to only the first 10
+    const allEvents = await getEvents();
+    const firstTenEvents = allEvents.slice(0, 10);
+
+    // compares the number of rendered event items to the first 10 events
+    expect(allRenderedEventItems.length).toBe(firstTenEvents.length);
   });
 });
