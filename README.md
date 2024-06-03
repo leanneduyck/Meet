@@ -136,3 +136,4 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <li>Testing is done using JEST, after first running "npm run test", JEST will watch and rerun test every time file is saved.</li>
 <li>Run "npm test -- --coverage" to see coverage rate for each component, goal is 70-100%.</li>
 </ul>
+<p>To render app's current UI, run "npm run start"</p>
