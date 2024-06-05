@@ -1,32 +1,3 @@
-// // trying CF GH code
-// import { useState } from 'react';
-
-// const NumberOfEvents = ({}) => {
-//   const [number, setNumber] = useState(32);
-
-//   const handleInputChanged = (event) => {
-//     const value = event.target.value;
-//     setNumber(value);
-//   };
-
-//   return (
-//     <div id="number-of-events">
-//       <label htmlFor="number-of-events-input">Number of Events: </label>
-//       <input
-//         type="text"
-//         id="number-of-events-input"
-//         className="number-of-events-input"
-//         value={number}
-//         onChange={handleInputChanged}
-//       />
-//     </div>
-//   );
-// };
-
-// export default NumberOfEvents;
-
-// my original code
-
 import { useState } from 'react';
 
 const NumberOfEvents = ({ updateEvents }) => {
@@ -46,7 +17,7 @@ const NumberOfEvents = ({ updateEvents }) => {
       <input
         data-testid="number-of-events"
         type="text"
-        className="number-of-events"
+        className="number-of-events-input"
         placeholder="Number of events"
         value={numberOfEvents}
         onChange={handleInputChanged}

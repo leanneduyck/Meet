@@ -1,4 +1,6 @@
 <p>This is an app where a user can search by city, define how many search results appear, receive a list of upcoming events in that city, show/hide full details of events, and view a chart with this data. A user will also be able to use this app to an extent offline, as well as add it to their home screen.</p>
+<p>Website: https://leanneduyck.github.io/meet/</p>
+
 <p>User Stories and Gherkin:</p>
 <p>Feature 1: filter events by city.
 As a user, 
@@ -79,7 +81,6 @@ Then the user sees a chart displaying previously searched data (cities, number o
 
 </p>
 <p>My Meet app uses Lambda serverless functions to (a) process real-time data such as user searches for cities/events, (b) manage authentication via AWS, and © automatic scaling based on user demand. This app is well-suited to serverless technology because it is a simpler app that doesn’t deal with sensitive data, and is run by a solo developer interested in cost-efficiency.</p>
-<p>Website: https://leanneduyck.github.io/meet/</p>
 <p>This app is built using CRA. To replicate, do the following:</p>
 <ul>
   <li>1. In terminal, create new project: "npx create-react-app meet --template cra-template-pwa --use-npm"</li>
@@ -136,4 +137,5 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <li>Testing is done using JEST, after first running "npm run test", JEST will watch and rerun test every time file is saved.</li>
 <li>Run "npm test -- --coverage" to see coverage rate for each component, goal is 70-100%.</li>
 </ul>
-<p>To render app's current UI, run "npm run start"</p>
+<p>To render app's current UI (locally), run "npm run start"</p>
+<p>To deploy to GHPages, run "npm run deploy"</p>

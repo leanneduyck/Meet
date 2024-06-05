@@ -69,19 +69,19 @@ functions:
   getAuthURL:
     handler: handler.getAuthURL
     events:
-      - http:
+      - http: https://leanneduyck.github.io/meet/{get-auth-url}'
           path: api/get-auth-url
           method: get
   getAccessToken:
     handler: handler.getAccessToken
     events:
-      - http:
+      - http: https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}
           path: api/token/{code}
           method: get
   getCalendarEvents:
     handler: handler.getCalendarEvents
     events:
-      - http:
+      - http: https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
           path: api/get-events/{access_token}
           method: get
 #    The following are a few example events you can configure
