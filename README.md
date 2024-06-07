@@ -33,7 +33,8 @@ When the user clicks/selects that event.
 Then the full details are shown.
 Scenario 3: a user can collapse an event to hide details.
 Given the user has finished viewing the event’s details.
-When the user clicks the exit button, the user is returned to the full list of events.
+When the user clicks the exit button,
+Then the user is returned to the full list of events.
 
 Feature 3: specify number of events.
 As a user,
@@ -139,3 +140,16 @@ Then the user sees a chart displaying previously searched data (cities, number o
 </ul>
 <p>To render app's current UI (locally), run "npm run start"</p>
 <p>To deploy to GHPages, run "npm run deploy"</p>
+<p>Acceptance Testing</p>
+<ul>
+<li>Install jest-cucumber: "npm install jest-cucumber --save-dev"</li>
+<li>Set up .feature and .test.js files</li>
+<li>Run "npm run test" <em>with defineFeature() block empty</em>; the test will fail as all first test do, but the error message provides the code to add to defineFeature()</li>
+</ul>
+<p>End to End Testing</p>
+<ul>
+<li>In root, run "npm install --save-dev puppeteer"</li>
+<li>In second terminal, start local app by running "npm run start", keep this open</li>
+<li>In original terminal, run "npm run test"</li>
+<li>Check that puppeteer version is compatible with Jest version</li>
+</ul>
