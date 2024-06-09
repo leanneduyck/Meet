@@ -17,35 +17,39 @@ const extractLocations = (events) => {
 
 // gets events from the mockData file if the app is running locally, otherwise it will fetch the events from the Google Calendar API
 const getEvents = async () => {
-  if (window.location.href.startsWith('http://localhost')) {
-    return mockData;
-  } else {
-    const accessToken = await getAccessToken();
-    if (accessToken) {
-      const url =
-        // URL taken from Google Calendar API get HTTP Request; is this correct?
-        // added this URL to serverless.yml
-        'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId' +
-        '/' +
-        accessToken;
-      const response = await fetch(url);
-      const result = await response.json();
-      return result.events || null;
-    } else {
-      return null;
-    }
-  }
+  // if (window.location.href.startsWith('http://localhost')) {
+  //   return mockData;
+  // } else {
+  // const accessToken = await getAccessToken();
+  // if (accessToken) {
+  //   console.log('Getting Events - accessToken', accessToken);
+  //   const url =
+  //     // URL taken from Google Calendar API get HTTP Request; is this correct?
+  //     // added this URL to serverless.yml
+  //     'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId' +
+  //     '/' +
+  //     accessToken;
+  //   const response = await fetch(url);
+  //   const result = await response.json();
+  //   return result.events || null;
+  // } else {
+  //   return null;
+  // }
+  // }
 };
 
 // gets the token from Google OAuth
 const getAccessToken = async () => {
+  console.log(0);
   // checks if the access token is in the local storage
   const accessToken = localStorage.getItem('access_token');
+  console.log(1, accessToken);
   if (accessToken) {
     return accessToken;
   } else {
     // redirects the user to the Google OAuth URL
     const code = new URLSearchParams(window.location.search).get('code');
+    console.log(2, code);
     if (code) {
       return getToken(code);
     } else {
@@ -75,7 +79,7 @@ const redirectToAuthUrl = async () => {
   const response = await fetch(
     // URL made up from Google API "Authorized Redirect URIs" + path from serverless.yml...is this correct?
     // added this URL to serverless.yml
-    'https://leanneduyck.github.io/meet/{get-auth-url}'
+    'https://cig8o7mze0.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
   );
   const { authUrl } = await response.json();
   window.location.href = authUrl;
