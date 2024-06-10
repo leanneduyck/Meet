@@ -66,55 +66,6 @@ defineFeature(feature, (test) => {
   });
 });
 
-// see below
-
-// test('when the user selects a city from the list, their city should be changed to that city and the user should receive a list of upcoming events in that city', ({
-//   given,
-//   when,
-//   then,
-// }) => {
-//   let AppComponent;
-//   let AppDOM;
-//   let CitySearchDOM;
-//   let citySearchInput;
-//   given('a user was typing “Berlin” in the city textbox', async () => {
-//     AppComponent = render(<App />);
-//     const user = userEvent.setup();
-//     AppDOM = AppComponent.container.firstChild;
-//     CitySearchDOM = AppDOM.querySelector('#city-search');
-//     citySearchInput = within(CitySearchDOM).queryByRole('textbox');
-//     await user.type(citySearchInput, 'Berlin');
-//   });
-
-//   let suggestionListItems;
-//   and('the list of suggested cities is showing', () => {
-//     suggestionListItems = within(CitySearchDOM).queryAllByRole('listitem');
-//     expect(suggestionListItems).toHaveLength(2);
-//   });
-
-//   when('the user selects a city from the list', async () => {
-//     const user = userEvent.setup();
-//     await user.click(suggestionListItems[0]);
-//   });
-
-//   then('their city should be changed to that city', () => {
-//     expect(citySearchInput.value).toBe('Berlin, Germany');
-//   });
-
-//   and(
-//     'the user should receive a list of upcoming events in that city',
-//     async () => {
-//       const EventListDOM = AppDOM.querySelector('#event-list');
-//       const EventListItems = within(EventListDOM).queryAllByRole('listitem');
-//       const allEvents = await getEvents();
-//       const berlinEvents = allEvents.filter(
-//         (event) => event.location === citySearchInput.value
-//       );
-//       expect(EventListItems).toHaveLength(berlinEvents.length);
-//     }
-//   );
-// });
-
 // feature 1c
 test('when the user selects a city from the list, their city should be changed to that city and the user should receive a list of upcoming events in that city', ({
   given,

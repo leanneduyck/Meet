@@ -1,4 +1,5 @@
 <p>This is an app where a user can search by city, define how many search results appear, receive a list of upcoming events in that city, show/hide full details of events, and view a chart with this data. A user will also be able to use this app to an extent offline, as well as add it to their home screen.</p>
+<p>It pulls data from CareerFoundry's Google Calendar API.</p>
 <p>Website: https://leanneduyck.github.io/meet/</p>
 
 <p>User Stories and Gherkin:</p>

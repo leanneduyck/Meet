@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
-  background-image: linear-gradient(135deg, #c8e0f6, #a8cef0);
+  background: url("../public/spinning_globe.gif") no-repeat center center fixed;
+  background-size: 60%;
   text-align: center;
   padding: 2% 5%;
 }
@@ -31,8 +32,9 @@ p {
 
 input[type="text"],
 input[type="number"] {
-  background-color: #f4fafe;
-  color: #487dac;
+  background-color: #487dac;
+  opacity: 0.8;
+  color: #f4fafe;
   padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
@@ -42,6 +44,12 @@ input[type="number"] {
   align-self: center;
   height: 38px;
   margin-bottom: 20px;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: #f4fafe;
+  opacity: 1;
 }
 
 .city {
@@ -87,6 +95,7 @@ input[type="number"] {
 
 .event {
   background-color: #f4fafe;
+  opacity: 0.9;
   color: #487dac;
   padding: 10px 10px 35px;
   margin-bottom: 10px;
@@ -105,6 +114,7 @@ input[type="number"] {
   padding: 5px 8px;
   border-radius: 4px;
   outline: none;
+  border: 1px solid #f4fafe;
   cursor: pointer;
 }
 
