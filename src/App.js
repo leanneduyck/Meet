@@ -53,12 +53,12 @@ const getAccessToken = async () => {
   //   return accessToken;
   // } else {
   // redirects the user to the Google OAuth URL
-  const code = new URLSearchParams(window.location.search).get('code');
-  if (code) {
-    return getToken(code);
-  } else {
-    redirectToAuthUrl();
-  }
+  // const code = new URLSearchParams(window.location.search).get('code');
+  // if (code) {
+  //   return getToken(code);
+  // } else {
+  redirectToAuthUrl();
+  // }
   // }
 };
 
@@ -70,7 +70,7 @@ const getToken = async (code) => {
   //   // URL taken from CF Ex 4.5 code check; is this correct?
   //   `https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token/${code}`
   // );
-  const response = axios.put(
+  const response = axios.get(
     `https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token/${encodeCode}`
   );
   const { access_token } = await response.json();
