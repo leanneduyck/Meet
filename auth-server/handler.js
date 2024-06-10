@@ -1,5 +1,5 @@
 // default, makes code more readable and maintainable
-'use strict';
+// 'use strict';
 
 // import the googleapis library
 const { google } = require('googleapis');
@@ -12,7 +12,7 @@ const SCOPES = [
 
 // best practice to store in config.json bc it's in .gitignore
 const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = process.env;
-const redirect_uris = ['https://leanneduyck.github.io/meet/'];
+const redirect_uris = ['https://meet-puce-kappa.vercel.app'];
 
 // create a new OAuth2 client, accepts client_id and client_secret, then redirect_uris
 const oAuth2Client = new google.auth.OAuth2(

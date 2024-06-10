@@ -17,26 +17,26 @@ const extractLocations = (events) => {
 
 // gets events from the mockData file if the app is running locally, otherwise it will fetch the events from the Google Calendar API
 const getEvents = async () => {
-  return [];
-  // if (window.location.href.startsWith('http://localhost')) {
-  //   return mockData;
-  // } else {
-  //   const accessToken = await getAccessToken();
-  //   if (accessToken) {
-  //     console.log('Getting Events - accessToken', accessToken);
-  //     const url =
-  //       // URL taken from Google Calendar API get HTTP Request; is this correct?
-  //       // added this URL to serverless.yml
-  //       'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId' +
-  //       '/' +
-  //       accessToken;
-  //     const response = await fetch(url);
-  //     const result = await response.json();
-  //     return result.events || [];
-  //   } else {
-  //     return [];
-  //   }
-  // }
+  // return [];
+  if (window.location.href.startsWith('http://localhost')) {
+    return mockData;
+  } else {
+    const accessToken = await getAccessToken();
+    if (accessToken) {
+      console.log('Getting Events - accessToken', accessToken);
+      const url =
+        // URL taken from Google Calendar API get HTTP Request; is this correct?
+        // added this URL to serverless.yml
+        'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId' +
+        '/' +
+        accessToken;
+      const response = await fetch(url);
+      const result = await response.json();
+      return result.events || [];
+    } else {
+      return [];
+    }
+  }
 };
 
 // gets the token from Google OAuth
@@ -80,7 +80,7 @@ const redirectToAuthUrl = async () => {
   const response = await fetch(
     // URL made up from Google API "Authorized Redirect URIs" + path from serverless.yml...is this correct?
     // added this URL to serverless.yml
-    'https://cig8o7mze0.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
+    'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
   );
   const { authUrl } = await response.json();
   window.location.href = authUrl;

@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: auth-server
+service: auth-server2
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -64,24 +64,22 @@ provider:
 #    - include-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
   getAuthURL:
     handler: handler.getAuthURL
     events:
-      - http: https://leanneduyck.github.io/meet/{get-auth-url}'
+      - http:
           path: api/get-auth-url
           method: get
   getAccessToken:
     handler: handler.getAccessToken
     events:
-      - http: https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}
+      - http:
           path: api/token/{code}
           method: get
   getCalendarEvents:
     handler: handler.getCalendarEvents
     events:
-      - http: https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+      - http:
           path: api/get-events/{access_token}
           method: get
 #    The following are a few example events you can configure
