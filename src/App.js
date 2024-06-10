@@ -65,6 +65,7 @@ const getAccessToken = async () => {
 // gets the token from Google OAuth using the provided code
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
+  console.log({ encodeCode, code });
   const response = await fetch(
     // URL taken from CF Ex 4.5 code check; is this correct?
     `https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token/${encodeCode}`
