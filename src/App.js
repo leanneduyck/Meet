@@ -18,24 +18,24 @@ const extractLocations = (events) => {
 // gets events from the mockData file if the app is running locally, otherwise it will fetch the events from the Google Calendar API
 const getEvents = async () => {
   // return [];
-  // if (window.location.href.startsWith('http://localhost')) {
-  //   return mockData;
-  // } else {
-  const accessToken = await getAccessToken();
-  if (accessToken) {
-    const url =
-      // URL taken from Google Calendar API get HTTP Request; is this correct?
-      // added this URL to serverless.yml
-      'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
-      '/' +
-      accessToken;
-    const response = await fetch(url);
-    const result = await response.json();
-    return result?.events || result?.items || [];
+  if (window.location.href.startsWith('http://localhost')) {
+    return mockData;
   } else {
-    return [];
+    const accessToken = await getAccessToken();
+    if (accessToken) {
+      const url =
+        // URL taken from Google Calendar API get HTTP Request; is this correct?
+        // added this URL to serverless.yml
+        'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
+        '/' +
+        accessToken;
+      const response = await fetch(url);
+      const result = await response.json();
+      return result?.events || result?.items || [];
+    } else {
+      return [];
+    }
   }
-  // }
 };
 
 // gets the token from Google OAuth
@@ -83,9 +83,7 @@ const redirectToAuthUrl = async () => {
 };
 
 const App = () => {
-  //Is Loaded
   const [allEvents, setAllEvents] = useState([]);
-
   // state to store the list of events
   const [allLocations, setAllLocations] = useState([]);
   const [currentNOE, setCurrentNOE] = useState(32);
@@ -94,17 +92,18 @@ const App = () => {
 
   // Define fetchData using useCallback to memoize the function
   const fetchData = useCallback(async () => {
+    let currentEvents = allEvents;
     if (allEvents?.length === 0) {
-      const allEvents = await getEvents();
-      setAllEvents(allEvents);
+      currentEvents = await getEvents();
+      setAllEvents(currentEvents);
     }
 
     const filteredEvents =
       currentCity === 'See all cities'
-        ? allEvents
-        : allEvents.filter((event) => event.location === currentCity);
+        ? currentEvents
+        : currentEvents.filter((event) => event.location === currentCity);
     setEvents(filteredEvents.slice(0, currentNOE));
-    setAllLocations(extractLocations(allEvents));
+    setAllLocations(extractLocations(currentEvents));
   }, [currentCity, currentNOE]);
 
   useEffect(() => {
