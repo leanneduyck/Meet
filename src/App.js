@@ -49,17 +49,17 @@ const getEvents = async () => {
 const getAccessToken = async () => {
   // checks if the access token is in the local storage
   const accessToken = localStorage.getItem('access_token');
-  // if (accessToken) {
-  //   return accessToken;
-  // } else {
-  // redirects the user to the Google OAuth URL
-  // const code = new URLSearchParams(window.location.search).get('code');
-  // if (code) {
-  //   return getToken(code);
-  // } else {
-  redirectToAuthUrl();
-  // }
-  // }
+  if (accessToken) {
+    return accessToken;
+  } else {
+    // redirects the user to the Google OAuth URL
+    const code = new URLSearchParams(window.location.search).get('code');
+    if (code) {
+      return getToken(code);
+    } else {
+      redirectToAuthUrl();
+    }
+  }
 };
 
 // gets the token from Google OAuth using the provided code
