@@ -74,8 +74,8 @@ functions:
     handler: handler.getAccessToken
     events:
       - http:
-          path: api/token
-          method: put
+          path: api/token/{code}
+          method: get
   getCalendarEvents:
     handler: handler.getCalendarEvents
     events:

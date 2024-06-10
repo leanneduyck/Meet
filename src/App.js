@@ -71,8 +71,7 @@ const getToken = async (code) => {
   //   `https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token/${code}`
   // );
   const response = axios.put(
-    'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token',
-    { code }
+    `https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token/${encodeCode}`
   );
   const { access_token } = await response.json();
   if (access_token) {
@@ -82,27 +81,6 @@ const getToken = async (code) => {
     return null;
   }
 };
-
-async function verifyToken(token) {
-  try {
-    const response = await axios.get(
-      `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
-    );
-    const { data } = response;
-    // Handle response data
-    if (data.email_verified) {
-      // Token is valid
-      return data.email;
-    } else {
-      // Token is not valid
-      throw new Error('Token is not valid.');
-    }
-  } catch (error) {
-    // Handle error
-    console.error('Error verifying token:', error.message);
-    throw error;
-  }
-}
 
 // redirects the user to the Google OAuth URL
 const redirectToAuthUrl = async () => {

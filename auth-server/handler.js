@@ -50,8 +50,10 @@ module.exports.getAuthURL = async () => {
 // getAccessToken function to get the access token and set it to the OAuth2 client
 module.exports.getAccessToken = async (event) => {
   // decode authorization code extracted from the URL query
-  // const code = decodeURIComponent(`${event.pathParameters.code}`);
-  const code = decodeURIComponent(event.body.code);
+  const code = decodeURIComponent(`${event.pathParameters.code}`);
+  // const code = decodeURIComponent(event.body.code);
+  // const code = event.body.code;
+  console.log('code:', code);
 
   return new Promise((resolve, reject) => {
     // exchange authorization code for access token
@@ -80,6 +82,11 @@ module.exports.getAccessToken = async (event) => {
       return {
         statusCode: 500,
         body: JSON.stringify(error),
+        headers: {
+          // allow CORS, all origins
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
       };
     });
 };
@@ -128,6 +135,11 @@ module.exports.getCalendarEvents = async (event) => {
       return {
         statusCode: 500,
         body: JSON.stringify(error),
+        headers: {
+          // allow CORS, all origins
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
       };
     });
 };
