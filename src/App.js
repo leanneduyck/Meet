@@ -98,8 +98,10 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState('See all cities');
 
   const fetchEvents = async () => {
-    const currentEvents = await getEvents();
-    setAllEvents(currentEvents);
+    setTimeout(async () => {
+      const currentEvents = await getEvents();
+      setAllEvents(currentEvents);
+    }, 1000);
   };
 
   // Define fetchData using useCallback to memoize the function
