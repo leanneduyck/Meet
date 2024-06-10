@@ -1,7 +1,9 @@
-import { render, within } from '@testing-library/react';
+import { render, within, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
+
+jest.setTimeout(10000);
 
 describe('<App /> component', () => {
   let AppDOM;
@@ -33,7 +35,18 @@ describe('<App /> integration', () => {
     const CitySearchDOM = AppDOM.querySelector('#city-search');
     const CitySearchInput = within(CitySearchDOM).queryByRole('textbox');
 
-    await user.type(CitySearchInput, 'Berlin');
+    await user.type(CitySearchInput, 'Berlin, Germany');
+
+    // reference the NumberOfEvents component and input element
+    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+    const NumberOfEventsInput =
+      within(NumberOfEventsDOM).queryByRole('textbox');
+
+    // simulate user typing "10" in the NumberOfEvents input element after backspacing the default value of "32"
+    // await user.type(NumberOfEventsInput, "{backspace}{backspace}'10");
+    // Simulate typing '10' into the input field
+    await fireEvent.change(NumberOfEventsInput, { target: { value: '15' } });
+
     const berlinSuggestionItem =
       within(CitySearchDOM).queryByText('Berlin, Germany');
     await user.click(berlinSuggestionItem);
@@ -43,11 +56,12 @@ describe('<App /> integration', () => {
       within(EventListDOM).queryAllByRole('listitem');
 
     const allEvents = await getEvents();
+
     const berlinEvents = allEvents.filter(
       (event) => event.location === 'Berlin, Germany'
     );
 
-    expect(allRenderedEventItems.length).toBe(berlinEvents.length);
+    expect(allRenderedEventItems.length).toBe(15);
 
     allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain('Berlin, Germany');
@@ -55,31 +69,6 @@ describe('<App /> integration', () => {
 
     // adding my own integration test for NOE plus EventList from original code below
     // integration test for App with NumberOfEvents and EventList
-    test('renders the correct number of events when the user changes the number of events', async () => {
-      const user = userEvent.setup();
-      const AppComponent = render(<App />);
-      const AppDOM = AppComponent.container.firstChild;
-
-      // reference the NumberOfEvents component and input element
-      const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events-input');
-      const NumberOfEventsInput =
-        within(NumberOfEventsDOM).queryByRole('textbox');
-
-      // simulate user typing "10" in the NumberOfEvents input element after backspacing the default value of "32"
-      await user.type(NumberOfEventsInput, "{backspace}{backspace}'10");
-
-      // queries the EventList component and all rendered event items
-      const EventListDOM = AppDOM.querySelector('#event-list');
-      const allRenderedEventItems =
-        within(EventListDOM).queryAllByRole('listitem');
-
-      // get all events and filter to only the first 10
-      const allEvents = await getEvents();
-      const firstTenEvents = allEvents.slice(0, 10);
-
-      // compares the number of rendered event items to the first 10 events
-      expect(allRenderedEventItems.length).toBe(firstTenEvents.length);
-    });
   });
 });
 

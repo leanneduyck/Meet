@@ -8,14 +8,15 @@ const NumberOfEvents = ({ updateEvents }) => {
   const handleInputChanged = (event) => {
     const value = event.target.value;
     setNumberOfEvents(value);
-    updateEvents(null, value);
+    updateEvents(value);
   };
 
   // returns a text input field to set the number of events to display
   return (
     <div id="number-of-events">
       <input
-        data-testid="number-of-events"
+        data-testid="number-of-events-field"
+        id="number-of-events-field"
         type="text"
         className="number-of-events-input"
         placeholder="Number of events"

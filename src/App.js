@@ -23,7 +23,6 @@ const getEvents = async () => {
   } else {
     const accessToken = await getAccessToken();
     if (accessToken) {
-      console.log('Getting Events - accessToken', accessToken);
       const url =
         // URL taken from Google Calendar API get HTTP Request; is this correct?
         // added this URL to serverless.yml
@@ -32,7 +31,6 @@ const getEvents = async () => {
         accessToken;
       const response = await fetch(url);
       const result = await response.json();
-      console.log('Getting Events - result', result);
       return result?.events || result?.items || [];
     } else {
       return [];
@@ -42,16 +40,13 @@ const getEvents = async () => {
 
 // gets the token from Google OAuth
 const getAccessToken = async () => {
-  console.log(0);
   // checks if the access token is in the local storage
   const accessToken = localStorage.getItem('access_token');
-  console.log(1, accessToken);
   if (accessToken) {
     return accessToken;
   } else {
     // redirects the user to the Google OAuth URL
     const code = new URLSearchParams(window.location.search).get('code');
-    console.log(2, code);
     if (code) {
       return getToken(code);
     } else {
@@ -132,6 +127,9 @@ const App = () => {
       <NumberOfEvents
         currentNOE={currentNOE}
         setCurrentNOE={handleCurrentNOEChange}
+        updateEvents={(count) => {
+          setCurrentNOE(count);
+        }}
       />
 
       {/* EventList component */}
