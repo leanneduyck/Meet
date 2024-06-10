@@ -24,15 +24,20 @@ const getEvents = async () => {
     const accessToken = await getAccessToken();
     console.log({ accessToken });
     if (accessToken) {
-      const url =
-        // URL taken from Google Calendar API get HTTP Request; is this correct?
-        // added this URL to serverless.yml
-        'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
-        '/' +
-        accessToken;
-      const response = await fetch(url);
-      const result = await response.json();
-      return result?.events || result?.items || [];
+      try {
+        const url =
+          // URL taken from Google Calendar API get HTTP Request; is this correct?
+          // added this URL to serverless.yml
+          'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
+          '/' +
+          accessToken;
+        const response = await fetch(url);
+        const result = await response.json();
+        return result?.events || result?.items || [];
+      } catch (err) {
+        console.error('ERROR:', err);
+        return [];
+      }
     } else {
       return [];
     }
@@ -94,7 +99,7 @@ const App = () => {
   // Define fetchData using useCallback to memoize the function
   const fetchData = useCallback(async () => {
     let currentEvents = allEvents;
-    if (allEvents?.length === 0) {
+    if (currentEvents?.length === 0) {
       currentEvents = await getEvents();
       setAllEvents(currentEvents);
     }
