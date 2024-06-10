@@ -154,3 +154,7 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <li>In original terminal, run "npm run test"</li>
 <li>Check that puppeteer version is compatible with Jest version</li>
 </ul>
+<p>Continuous Testing: Atatus</p>
+<ul>
+<p>Set up Atatus account, follow prompts, follow prompts to install.</p>
+</ul>
