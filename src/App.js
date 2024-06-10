@@ -27,7 +27,7 @@ const getEvents = async () => {
       const url =
         // URL taken from Google Calendar API get HTTP Request; is this correct?
         // added this URL to serverless.yml
-        'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId' +
+        'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
         '/' +
         accessToken;
       const response = await fetch(url);
