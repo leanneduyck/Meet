@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
+import axios from 'axios';
 
 import './App.css';
 
@@ -22,16 +23,22 @@ const getEvents = async () => {
     return mockData;
   } else {
     const accessToken = await getAccessToken();
+    console.log({ accessToken });
     if (accessToken) {
-      const url =
-        // URL taken from Google Calendar API get HTTP Request; is this correct?
-        // added this URL to serverless.yml
-        'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
-        '/' +
-        accessToken;
-      const response = await fetch(url);
-      const result = await response.json();
-      return result?.events || result?.items || [];
+      try {
+        const url =
+          // URL taken from Google Calendar API get HTTP Request; is this correct?
+          // added this URL to serverless.yml
+          'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
+          '/' +
+          accessToken;
+        const response = await fetch(url);
+        const result = await response.json();
+        return result?.events || result?.items || [];
+      } catch (err) {
+        console.error('ERROR:', err);
+        return [];
+      }
     } else {
       return [];
     }
@@ -42,17 +49,17 @@ const getEvents = async () => {
 const getAccessToken = async () => {
   // checks if the access token is in the local storage
   const accessToken = localStorage.getItem('access_token');
-  if (accessToken) {
-    return accessToken;
+  // if (accessToken) {
+  //   return accessToken;
+  // } else {
+  // redirects the user to the Google OAuth URL
+  const code = new URLSearchParams(window.location.search).get('code');
+  if (code) {
+    return getToken(code);
   } else {
-    // redirects the user to the Google OAuth URL
-    const code = new URLSearchParams(window.location.search).get('code');
-    if (code) {
-      return getToken(code);
-    } else {
-      redirectToAuthUrl();
-    }
+    redirectToAuthUrl();
   }
+  // }
 };
 
 // gets the token from Google OAuth using the provided code
@@ -71,6 +78,27 @@ const getToken = async (code) => {
   }
 };
 
+async function verifyToken(token) {
+  try {
+    const response = await axios.get(
+      `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
+    );
+    const { data } = response;
+    // Handle response data
+    if (data.email_verified) {
+      // Token is valid
+      return data.email;
+    } else {
+      // Token is not valid
+      throw new Error('Token is not valid.');
+    }
+  } catch (error) {
+    // Handle error
+    console.error('Error verifying token:', error.message);
+    throw error;
+  }
+}
+
 // redirects the user to the Google OAuth URL
 const redirectToAuthUrl = async () => {
   const response = await fetch(
@@ -83,24 +111,37 @@ const redirectToAuthUrl = async () => {
 };
 
 const App = () => {
+  const [allEvents, setAllEvents] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   // state to store the list of events
   const [allLocations, setAllLocations] = useState([]);
   const [currentNOE, setCurrentNOE] = useState(32);
   const [events, setEvents] = useState([]);
   const [currentCity, setCurrentCity] = useState('See all cities');
 
+  const fetchEvents = async () => {
+    setTimeout(async () => {
+      const currentEvents = await getEvents();
+      setAllEvents(currentEvents);
+    }, 1000);
+  };
+
   // Define fetchData using useCallback to memoize the function
   const fetchData = useCallback(async () => {
-    const allEvents = await getEvents();
     const filteredEvents =
       currentCity === 'See all cities'
         ? allEvents
         : allEvents.filter((event) => event.location === currentCity);
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
-  }, [currentCity, currentNOE]);
+  }, [currentCity, currentNOE, allEvents]);
 
   useEffect(() => {
+    if (isLoaded === false) {
+      fetchEvents();
+      setIsLoaded(true);
+    }
+
     fetchData();
   }, [fetchData]);
 
