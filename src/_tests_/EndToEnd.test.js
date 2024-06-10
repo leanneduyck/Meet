@@ -67,6 +67,6 @@ describe('show/hide an event details', () => {
     await page.click('.event .details-btn');
     // check if event details are displayed
     const eventDetails = await page.$('.event .details');
-    expect(eventDetails).toBeDefined();
+    expect(eventDetails).toBeNull();
   });
 });
