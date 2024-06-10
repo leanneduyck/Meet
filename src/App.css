@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
-  background: url("../public/spinning_globe.gif") no-repeat center center fixed;
+  background: url("spinning_globe.gif") no-repeat center center fixed;
   background-size: 60%;
   text-align: center;
   padding: 2% 5%;
