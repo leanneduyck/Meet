@@ -5,6 +5,7 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 
 import './App.css';
+import spinningGlobe from './spinning_globe.gif';
 
 import mockData from './mock-data';
 
@@ -119,7 +120,7 @@ const App = () => {
 
   // returns the CitySearch, NOE, and EventList components
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundImage: `url(${spinningGlobe})` }}>
       {/* CitySearch component */}
       <CitySearch
         allLocations={allLocations}
