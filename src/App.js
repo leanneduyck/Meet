@@ -32,7 +32,8 @@ const getEvents = async () => {
         accessToken;
       const response = await fetch(url);
       const result = await response.json();
-      return result.events || [];
+      console.log('Getting Events - result', result);
+      return result?.events || result?.items || [];
     } else {
       return [];
     }
