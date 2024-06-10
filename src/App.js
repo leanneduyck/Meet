@@ -66,9 +66,13 @@ const getAccessToken = async () => {
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   console.log({ encodeCode, code });
-  const response = await fetch(
-    // URL taken from CF Ex 4.5 code check; is this correct?
-    `https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token/${code}`
+  // const response = await fetch(
+  //   // URL taken from CF Ex 4.5 code check; is this correct?
+  //   `https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token/${code}`
+  // );
+  const response = axios.put(
+    'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token',
+    { code }
   );
   const { access_token } = await response.json();
   if (access_token) {

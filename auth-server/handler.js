@@ -50,7 +50,8 @@ module.exports.getAuthURL = async () => {
 // getAccessToken function to get the access token and set it to the OAuth2 client
 module.exports.getAccessToken = async (event) => {
   // decode authorization code extracted from the URL query
-  const code = decodeURIComponent(`${event.pathParameters.code}`);
+  // const code = decodeURIComponent(`${event.pathParameters.code}`);
+  const code = decodeURIComponent(event.body.code);
 
   return new Promise((resolve, reject) => {
     // exchange authorization code for access token
