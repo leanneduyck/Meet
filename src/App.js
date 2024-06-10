@@ -3,7 +3,6 @@ import { useEffect, useState, useCallback } from 'react';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
-import axios from 'axios';
 
 import './App.css';
 
@@ -91,36 +90,37 @@ const redirectToAuthUrl = async () => {
 };
 
 const App = () => {
-  const [allEvents, setAllEvents] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  // const [allEvents, setAllEvents] = useState([]);
+  // const [isLoaded, setIsLoaded] = useState(false);
   // state to store the list of events
   const [allLocations, setAllLocations] = useState([]);
   const [currentNOE, setCurrentNOE] = useState(32);
   const [events, setEvents] = useState([]);
   const [currentCity, setCurrentCity] = useState('See all cities');
 
-  const fetchEvents = async () => {
-    setTimeout(async () => {
-      const currentEvents = await getEvents();
-      setAllEvents(currentEvents);
-    }, 1000);
-  };
+  // const fetchEvents = async () => {
+  //   setTimeout(async () => {
+  //     const currentEvents = await getEvents();
+  //     setAllEvents(currentEvents);
+  //   }, 1000);
+  // };
 
   // Define fetchData using useCallback to memoize the function
   const fetchData = useCallback(async () => {
+    const allEvents = await getEvents();
     const filteredEvents =
       currentCity === 'See all cities'
         ? allEvents
         : allEvents.filter((event) => event.location === currentCity);
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
-  }, [currentCity, currentNOE, allEvents]);
+  }, [currentCity, currentNOE]);
 
   useEffect(() => {
-    if (isLoaded === false) {
-      fetchEvents();
-      setIsLoaded(true);
-    }
+    // if (isLoaded === false) {
+    //   fetchEvents();
+    //   setIsLoaded(true);
+    // }
 
     fetchData();
   }, [fetchData]);
