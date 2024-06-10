@@ -22,6 +22,7 @@ const getEvents = async () => {
     return mockData;
   } else {
     const accessToken = await getAccessToken();
+    console.log({ accessToken });
     if (accessToken) {
       const url =
         // URL taken from Google Calendar API get HTTP Request; is this correct?
