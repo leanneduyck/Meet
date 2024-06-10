@@ -48,7 +48,8 @@ const getEvents = async () => {
 // gets the token from Google OAuth
 const getAccessToken = async () => {
   // checks if the access token is in the local storage
-  const accessToken = localStorage.getItem('access_token');
+  // const accessToken = sessionStorage.getItem('access_token');
+  const accessToken = sessionStorage.getItem('access_token');
   if (accessToken) {
     return accessToken;
   } else {
@@ -75,7 +76,7 @@ const getToken = async (code) => {
   // );
   const { access_token } = await response.json();
   if (access_token) {
-    localStorage.setItem('access_token', access_token);
+    sessionStorage.setItem('access_token', access_token);
     return access_token;
   } else {
     return null;
