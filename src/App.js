@@ -90,19 +90,25 @@ const redirectToAuthUrl = async () => {
 
 const App = () => {
   const [allEvents, setAllEvents] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   // state to store the list of events
   const [allLocations, setAllLocations] = useState([]);
   const [currentNOE, setCurrentNOE] = useState(32);
   const [events, setEvents] = useState([]);
   const [currentCity, setCurrentCity] = useState('See all cities');
 
+  const fetchEvents = async () => {
+    const currentEvents = await getEvents();
+    setAllEvents(currentEvents);
+  };
+
   // Define fetchData using useCallback to memoize the function
   const fetchData = useCallback(async () => {
     let currentEvents = allEvents;
-    if (currentEvents?.length === 0) {
-      currentEvents = await getEvents();
-      setAllEvents(currentEvents);
-    }
+    // if (currentEvents?.length === 0) {
+    //   const currentEvents = await getEvents();
+    //   setAllEvents(currentEvents);
+    // }
 
     const filteredEvents =
       currentCity === 'See all cities'
@@ -110,9 +116,14 @@ const App = () => {
         : currentEvents.filter((event) => event.location === currentCity);
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(currentEvents));
-  }, [currentCity, currentNOE]);
+  }, [currentCity, currentNOE, allEvents]);
 
   useEffect(() => {
+    if (isLoaded === false) {
+      fetchEvents();
+      setIsLoaded(true);
+    }
+
     fetchData();
   }, [fetchData]);
 
