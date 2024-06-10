@@ -17,24 +17,25 @@ const extractLocations = (events) => {
 
 // gets events from the mockData file if the app is running locally, otherwise it will fetch the events from the Google Calendar API
 const getEvents = async () => {
+  return [];
   // if (window.location.href.startsWith('http://localhost')) {
   //   return mockData;
   // } else {
-  // const accessToken = await getAccessToken();
-  // if (accessToken) {
-  //   console.log('Getting Events - accessToken', accessToken);
-  //   const url =
-  //     // URL taken from Google Calendar API get HTTP Request; is this correct?
-  //     // added this URL to serverless.yml
-  //     'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId' +
-  //     '/' +
-  //     accessToken;
-  //   const response = await fetch(url);
-  //   const result = await response.json();
-  //   return result.events || null;
-  // } else {
-  //   return null;
-  // }
+  //   const accessToken = await getAccessToken();
+  //   if (accessToken) {
+  //     console.log('Getting Events - accessToken', accessToken);
+  //     const url =
+  //       // URL taken from Google Calendar API get HTTP Request; is this correct?
+  //       // added this URL to serverless.yml
+  //       'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId' +
+  //       '/' +
+  //       accessToken;
+  //     const response = await fetch(url);
+  //     const result = await response.json();
+  //     return result.events || [];
+  //   } else {
+  //     return [];
+  //   }
   // }
 };
 
