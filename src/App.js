@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { setCookie, getCookie } from './cookieUtils';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
@@ -98,9 +99,47 @@ const App = () => {
     setAllLocations(extractLocations(allEvents));
   }, [currentCity, currentNOE]);
 
+  // commenting out to test, this did work before but only for my google account
+  // useEffect(() => {
+  //   fetchData();
+  // }, [fetchData]);
+
   useEffect(() => {
-    fetchData();
+    const code = new URLSearchParams(window.location.search).get('code');
+    if (code) {
+      getToken(code);
+    } else {
+      const accessToken = getCookie('access_token');
+      if (!accessToken) {
+        redirectToAuthUrl();
+      } else {
+        fetchData();
+      }
+    }
   }, [fetchData]);
+
+  const redirectToAuthUrl = async () => {
+    const response = await fetch(
+      'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
+    );
+    const { authUrl } = await response.json();
+    window.location.href = authUrl;
+  };
+
+  const getToken = async (code) => {
+    const encodeCode = encodeURIComponent(code);
+    const response = await fetch(
+      `https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/token/${encodeCode}`
+    );
+    const { access_token } = await response.json();
+    if (access_token) {
+      // cookie expires in 1 day
+      setCookie('access_token', access_token, 1);
+      return access_token;
+    } else {
+      return null;
+    }
+  };
 
   const handleCurrentNOEChange = (newNOE) => {
     setCurrentNOE(newNOE);
