@@ -41,7 +41,7 @@ const getEvents = async () => {
   }
 };
 
-// gets the token from Google OAuth
+// gets the token from local storage or redirects the user to the Google OAuth URL
 const getAccessToken = async () => {
   const accessToken = sessionStorage.getItem('access_token');
   if (accessToken) {
@@ -54,6 +54,15 @@ const getAccessToken = async () => {
       redirectToAuthUrl();
     }
   }
+};
+
+// redirects the user to the Google OAuth URL
+const redirectToAuthUrl = async () => {
+  const response = await fetch(
+    'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
+  );
+  const { authUrl } = await response.json();
+  window.location.href = authUrl;
 };
 
 // gets the token from Google OAuth using the provided code
@@ -69,15 +78,6 @@ const getToken = async (code) => {
   } else {
     return null;
   }
-};
-
-// redirects the user to the Google OAuth URL
-const redirectToAuthUrl = async () => {
-  const response = await fetch(
-    'https://coe3tj5b5f.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
-  );
-  const { authUrl } = await response.json();
-  window.location.href = authUrl;
 };
 
 const App = () => {
