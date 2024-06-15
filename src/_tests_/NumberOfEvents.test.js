@@ -10,7 +10,10 @@ describe('<NumberOfEvents /> component', () => {
   // adding updateEvents={mockUpdateEvents} as per chatGPT suggestion
   beforeEach(() => {
     NumberOfEventsComponent = render(
-      <NumberOfEvents updateEvents={mockUpdateEvents} />
+      <NumberOfEvents
+        updateEvents={mockUpdateEvents}
+        setErrorAlert={() => {}}
+      />
     );
   });
 

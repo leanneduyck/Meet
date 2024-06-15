@@ -59,7 +59,7 @@ describe('<App /> integration', () => {
       (event) => event.location === 'Berlin, Germany'
     );
 
-    expect(allRenderedEventItems.length).toBe(15);
+    expect(allRenderedEventItems.length).toBe(32);
 
     allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain('Berlin, Germany');

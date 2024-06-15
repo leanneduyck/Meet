@@ -1,17 +1,46 @@
 import { useState } from 'react';
 
-const NumberOfEvents = ({ updateEvents }) => {
-  // state to store the number of events to display
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
   const [numberOfEvents, setNumberOfEvents] = useState(32);
+  // set to empty string to avoid placeholder number, instead shows placeholder text
+  const [tempValue, setTempValue] = useState('');
 
-  // function to handle changes to the text input field
   const handleInputChanged = (event) => {
     const value = event.target.value;
-    setNumberOfEvents(value);
-    updateEvents(value);
+    setTempValue(value);
+
+    // clears the error alert when the input is empty
+    if (value === '') {
+      setErrorAlert('');
+    } else if (isNaN(Number(value)) || Number(value) <= 0) {
+      setErrorAlert('Please enter a valid number');
+    } else {
+      setErrorAlert('');
+    }
   };
 
-  // returns a text input field to set the number of events to display
+  const handleInputBlur = () => {
+    const value = Number(tempValue);
+
+    // if the value is not a number or is less than or equal to 0, then setErrorAlert
+    if (isNaN(value) || value <= 0) {
+      // revert to last valid value
+      setTempValue(numberOfEvents);
+      setErrorAlert('Please enter a valid number');
+    } else {
+      setNumberOfEvents(value);
+      setCurrentNOE(value);
+      setErrorAlert('');
+    }
+  };
+
+  // user presses 'enter' or click outside the input field to submit
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleInputBlur();
+    }
+  };
+
   return (
     <div id="number-of-events">
       <input
@@ -19,12 +48,52 @@ const NumberOfEvents = ({ updateEvents }) => {
         id="number-of-events-field"
         type="text"
         className="number-of-events-input"
-        placeholder="Number of events"
-        value={numberOfEvents}
+        placeholder={tempValue === '' ? 'Number of events' : ''}
+        value={tempValue}
         onChange={handleInputChanged}
+        onBlur={handleInputBlur}
+        onKeyPress={handleKeyPress}
       />
     </div>
   );
 };
 
 export default NumberOfEvents;
+
+// import { useState } from 'react';
+
+// const NumberOfEvents = ({ updateEvents, setErrorAlert }) => {
+//   // state to store the number of events to display
+//   const [numberOfEvents, setNumberOfEvents] = useState(32);
+
+//   // function to handle changes to the text input field
+//   const handleInputChanged = (event) => {
+//     const value = event.target.value;
+
+//     // if the value is not a number or is less than or equal to 0, then ErrorAlert
+//     if (isNaN(value) || value <= 0) {
+//       setErrorAlert('Please enter a valid number');
+//     } else {
+//       setErrorAlert('');
+//       setNumberOfEvents(value);
+//       updateEvents(value);
+//     }
+//   };
+
+//   // returns a text input field to set the number of events to display
+//   return (
+//     <div id="number-of-events">
+//       <input
+//         data-testid="number-of-events-field"
+//         id="number-of-events-field"
+//         type="text"
+//         className="number-of-events-input"
+//         placeholder="Number of events"
+//         value={numberOfEvents}
+//         onChange={handleInputChanged}
+//       />
+//     </div>
+//   );
+// };
+
+// export default NumberOfEvents;

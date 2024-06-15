@@ -30,6 +30,12 @@ p {
   margin: 5px 0;
 }
 
+h1 {
+  color: #f4fafe;
+  font-weight: bold;
+  text-shadow: -1.5px -1.5px 0 #487dac;
+}
+
 input[type="text"],
 input[type="number"] {
   background-color: #487dac;
@@ -121,4 +127,12 @@ input[type="number"]::placeholder {
 .details-btn:hover {
   background-color: #99c1e5;
   font-size: 120%;
+}
+
+.alerts-container {
+  position: fixed;
+  top: 0px;
+  left: 20px;
+  width: 250px;
+  z-index: 1000;
 }
