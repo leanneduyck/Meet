@@ -64,7 +64,7 @@ const getToken = async (code) => {
 // redirects the user to the Google OAuth URL
 const redirectToAuthUrl = async () => {
   const response = await fetch(
-    'https://leanneduyck.github.io/meet/{get-auth-url}'
+    'https://www.meet-puce-kappa.vercel.app{get-auth-url}'
   );
   const { authUrl } = await response.json();
   window.location.href = authUrl;
