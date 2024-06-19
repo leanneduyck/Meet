@@ -163,5 +163,5 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <ul>
 <li>Inspecting live page, go to Lighthouse (Navigation Mode) in Dev Tools to evaluate aptitude for becoming PWA.</li>
 <li>Adjust to meet all PWA Requirements.</li>
-<li>Any manifest requirements can be fixed in public/manifest.json</li>
+<li>Any manifest requirements can be fixed in public/manifest.json, src/index.js, src/service-worker.js, src/serviceWorkerRegistration.js</li>
 </ul>
