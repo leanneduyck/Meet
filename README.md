@@ -97,6 +97,7 @@ Then the user sees a chart displaying previously searched data (cities, number o
   <li>9. Deploy, via terminal: "sudo npm run deploy"</li>
 </ul>
 <p>Set up OAuth in Google, add Google Calendar API, manually add scope: https://www.googleapis.com/auth/calendar.events.public.readonly”</p>
+<p>When ready for general users, be sure to switch the environment from "in testing" to "in production".</p>
 <p>Set up AWS Lambda, Serverless Toolkit</p>
 <ul>
 <li>1. "npm install -g serverless"</li>
@@ -157,4 +158,10 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <p>App Performance Monitoring: Atatus</p>
 <ul>
 <p>Set up Atatus account, follow prompts, follow prompts to install.</p>
+</ul>
+<p>AWS</p>
+<ul>
+<li>Inspecting live page, go to Lighthouse (Navigation Mode) in Dev Tools to evaluate aptitude for becoming PWA.</li>
+<li>Adjust to meet all PWA Requirements.</li>
+<li>Any manifest requirements can be fixed in public/manifest.json</li>
 </ul>
