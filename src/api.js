@@ -1,5 +1,7 @@
 // passes all but App.test.js - probably bc of endpoint URLs not being correct???
 import mockData from './mock-data';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css'; // Optionally import the CSS for NProgress
 
 // extracts the locations from the events
 export const extractLocations = (events) => {
@@ -13,6 +15,11 @@ export const getEvents = async () => {
   if (window.location.href.startsWith('http://localhost')) {
     return mockData;
   } else {
+    if (!navigator.onLine) {
+      const events = localStorage.getItem('lastEvents');
+      NProgress.done();
+      return events ? JSON.parse(events) : [];
+    }
     const accessToken = await getAccessToken();
     if (accessToken) {
       const url =
@@ -20,11 +27,14 @@ export const getEvents = async () => {
         'https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId' +
         '/' +
         accessToken;
+      // adjusted to work offline as part of PWA
       const response = await fetch(url);
       const result = await response.json();
-      return result.events || null;
-    } else {
-      return null;
+      if (result) {
+        NProgress.done();
+        localStorage.setItem('lastEvents', JSON.stringify(result.events));
+        return result.events;
+      } else return null;
     }
   }
 };

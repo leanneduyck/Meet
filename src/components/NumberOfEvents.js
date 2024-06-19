@@ -26,7 +26,7 @@ const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
     if (isNaN(value) || value <= 0) {
       // revert to last valid value
       setTempValue(numberOfEvents);
-      setErrorAlert('Please enter a valid number');
+      setErrorAlert('Please enter a valid number.');
     } else {
       setNumberOfEvents(value);
       setCurrentNOE(value);

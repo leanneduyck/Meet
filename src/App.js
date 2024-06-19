@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 import './App.css';
 import spinningGlobe from './spinning_globe.gif';
@@ -88,6 +88,7 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState('See all cities');
   const [infoAlert, setInfoAlert] = useState('');
   const [errorAlert, setErrorAlert] = useState('');
+  const [warningAlert, setWarningAlert] = useState('');
 
   const fetchData = useCallback(async () => {
     const allEvents = await getEvents();
@@ -100,6 +101,15 @@ const App = () => {
   }, [currentCity, currentNOE]);
 
   useEffect(() => {
+    if (navigator.onLine) {
+      // if online, set the error alert message to an empty string
+      setWarningAlert('');
+      // if offline, warningAlert message will be displayed
+    } else {
+      setWarningAlert(
+        'Some features may not work as expected when being used offline.'
+      );
+    }
     fetchData();
   }, [fetchData]);
 
@@ -118,12 +128,14 @@ const App = () => {
       <div className="alerts-container">
         {infoAlert && <InfoAlert text={infoAlert} />}
         {errorAlert && <ErrorAlert text={errorAlert} />}
+        {warningAlert && <WarningAlert text={warningAlert} />}
       </div>
       <h1>Meet App</h1>
       <CitySearch
         allLocations={allLocations}
         setCurrentCity={handleCurrentCityChange}
         setInfoAlert={setInfoAlert}
+        setWarningAlert={setWarningAlert}
       />
       <NumberOfEvents
         currentNOE={currentNOE}
