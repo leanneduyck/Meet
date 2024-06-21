@@ -9,13 +9,14 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+const COLORS = '#487dac';
+
 const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     setData(getData());
-    // earlier example used ${events}
-  }, [`${data}`]);
+  }, [allLocations, events]);
 
   const getData = () => {
     const data = allLocations.map((location) => {
@@ -24,8 +25,10 @@ const CityEventsChart = ({ allLocations, events }) => {
       ).length;
       // splits location string by ', ' or ' - '
       const city = location.split(/, | - /)[0];
-      // returns city and count, not country
-      return { city, count };
+      // calculates size based on count
+      const size = Math.sqrt(count) * 100; // Adjust the multiplier to control the size scaling
+      // returns city, count, and size of the dot
+      return { city, count, size };
     });
     return data;
   };
@@ -35,28 +38,35 @@ const CityEventsChart = ({ allLocations, events }) => {
       <ScatterChart
         margin={{
           top: 20,
-          right: 20,
+          right: 40,
           bottom: 60,
           left: -30,
         }}
       >
-        <CartesianGrid />
+        <CartesianGrid stroke="#487dac" />
         <XAxis
           type="category"
           dataKey="city"
           name="City"
           angle={60}
           interval={0}
-          tick={{ dx: 20, dy: 40, fontSize: 14 }}
-        />{' '}
+          tick={{ dx: 20, dy: 40, fontSize: 18, fill: COLORS }}
+        />
         <YAxis
           type="number"
           dataKey="count"
           name="Number of events"
           allowDecimals={false}
+          tick={{ fontSize: 18, fill: COLORS }}
         />
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-        <Scatter name="A school" data={data} fill="#8884d8" />
+        <Scatter
+          name="Events"
+          data={data}
+          fill={COLORS}
+          shape="circle"
+          dataKey="size"
+        />
       </ScatterChart>
     </ResponsiveContainer>
   );

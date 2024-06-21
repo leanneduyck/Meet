@@ -1,10 +1,20 @@
-<p>This is an app where a user can search by city, define how many search results appear, receive a list of upcoming events in that city, show/hide full details of events, and view a chart with this data. A user will also be able to use this app to an extent offline, as well as add it to their home screen.</p>
-<p>It pulls data from CareerFoundry's Google Calendar API.</p>
-<p>Website: https://leanneduyck.github.io/meet/</p>
+Key Features:
 
-<p>User Stories and Gherkin:</p>
-<p>Feature 1: filter events by city.
-As a user, 
+1. City Search: Users can search for events by city.
+2. Customizable Results: Users can define the number of search results to display.
+3. Event Details: Users can show or hide full details of each event.
+4. Data Visualization: Users can view charts displaying event data.
+5. Offline Functionality: Some features are accessible even without an internet connection.
+6. Home Screen Shortcut: Users can add the app to their home screen for quick access.
+
+Data Source:
+The app retrieves event data from CareerFoundry's Google Calendar API.
+
+Website: https://meet-puce-kappa.vercel.app/
+
+User Stories and Gherkin:
+Feature 1: filter events by city.
+As a user,
 I should be able to filter events by city
 So that I can see a list of events taking place in that city.
 Scenario 1: when a user hasn’t searched for any city, show upcoming events from all cities.
@@ -81,91 +91,137 @@ Given the user has previously searched for cities and events.
 When the user clicks/selects the chart button.
 Then the user sees a chart displaying previously searched data (cities, number of events).
 
-</p>
-<p>My Meet app uses Lambda serverless functions to (a) process real-time data such as user searches for cities/events, (b) manage authentication via AWS, and © automatic scaling based on user demand. This app is well-suited to serverless technology because it is a simpler app that doesn’t deal with sensitive data, and is run by a solo developer interested in cost-efficiency.</p>
-<p>This app is built using CRA. To replicate, do the following:</p>
-<ul>
-  <li>1. In terminal, create new project: "npx create-react-app meet --template cra-template-pwa --use-npm"</li>
-  <li>2. "cd meet" "npm run start"</li>
-  <li>3. Via terminal, deploy to GH: "npm install --save-dev gh-pages"</li>
-  <li>4. In GH, create new repository, then follow prompts to add existing repo via terminal.</li>
-  <li>5. Add your homepage URL to package.json file (between "private" and "dependencies").</li>
-  <li>6. In package.json, add to "scripts" section: "predeploy": "npm run build",
-"deploy": "gh-pages -d build"</li>
-  <li>7. Add remote URL, via terminal: "git init" , "git remote add origin https://github.com/leanneduyck/meet.git"</li>
-  <li>8. Commit and push changes, via terminal: "git add ." , "git commit -m "First commit" , "git branch -M main" , "git push -u origin main"</li>
-  <li>9. Deploy, via terminal: "sudo npm run deploy"</li>
-</ul>
-<p>Set up OAuth in Google, add Google Calendar API, manually add scope: https://www.googleapis.com/auth/calendar.events.public.readonly”</p>
-<p>When ready for general users, be sure to switch the environment from "in testing" to "in production".</p>
-<p>Set up AWS Lambda, Serverless Toolkit</p>
-<ul>
-<li>1. "npm install -g serverless"</li>
-<li>2. Create serverless service: "serverless create --template aws-nodejs --path auth-server
-", "cd auth-server
-", "npm init"</li>
-<li>3. Check to make sure that handler.js and serverless.yml files have been added</li>
-<li>4. Configure AWS credentials: create new access key, then "serverless config credentials --provider aws --key ACCESS_KEY_ID --secret SECRET_ACCESS_KEY" but change key_id and access_key to what google oauth gave</li>
-</ul>
-<ul>
-<p>Configuring</p>
-<li>1. Create config.json file within "auth-server" folder ("touch config.json" in terminal), then add client_id and client_secret from Google Calendar API. Add config.json to .gitignore inside auth-server folder.</li>
-<li>2. Set up serverless.yml file, provider and functions sections.</li>
-<li>3. Install Google APIs Pkg: while inside auth-server folder, "npm install googleapis --save"</li>
-</ul>
-<ul>
-<p>Local Testing</p>
-<li>1. Within "auth-server" folder terminal, "serverless invoke local --function *functionName*"</li>
-<li>2. Copy received URL fromAndIncluding "https://" untilButExcluding "\", paste into google and see if it works!</li>
-<li>3. Make sure to use the TestUser email set when setting up Google OAuth.</li>
-</ul>
-<p>Deploying Functions</p>
-<ul>
-<p>1. Within "auth-server" folder terminal, "serverless deploy"</p>
-<p>2. Can check that the function has been correctly deployed to Lambda by logging into your AWS Management Console, deployed Lambda Functions</p>
-</ul>
-<p>For OAuth2, need the following serverless functions: getAuthURL, getAccessToken, getCalendarEvents</p>
-<p>Static Site to test Serverless Functions</p>
-<ul>
-<li>1. Set up local Node.js HTTP server: "npm install http-server -g", once installed "http-server" automatically starts server</li>
-<li>2. Create a Simple HTML file:</li>
-<li>a. Make sure server isn't running. Then. Create a new static-site-test folder: "mkdir static-test-site", then navigate into it: "cd static-test-site"</li>
-<li>b. Create a new HTML file called test-auth-server.html: "touch test-auth-server.html", write according to 4.3 instructions.</li>
-<li>c. To test, run "http-server" within static-site-test folder, then visit one of the available URLs and click tests for endpoints.</li>
-<li>c1. Code for token code input is found in Meet app's URL after "code="</li>
-</ul>
-<p>TDD Testing</p>
-<ul>
-<li>Within _tests_ / App.test.js, write tests, then run "npm run test" (make sure to be within file you want to test)</li>
-<li>Testing is done using JEST, after first running "npm run test", JEST will watch and rerun test every time file is saved.</li>
-<li>Run "npm test -- --coverage" to see coverage rate for each component, goal is 70-100%.</li>
-</ul>
-<p>To render app's current UI (locally), run "npm run start"</p>
-<p>To deploy to GHPages, run "npm run deploy"</p>
-<p>Acceptance Testing</p>
-<ul>
-<li>Install jest-cucumber: "npm install jest-cucumber --save-dev"</li>
-<li>Set up .feature and .test.js files</li>
-<li>Run "npm run test" <em>with defineFeature() block empty</em>; the test will fail as all first test do, but the error message provides the code to add to defineFeature()</li>
-</ul>
-<p>End to End Testing</p>
-<ul>
-<li>In root, run "npm install --save-dev puppeteer"</li>
-<li>In second terminal, start local app by running "npm run start", keep this open</li>
-<li>In original terminal, run "npm run test"</li>
-<li>Check that puppeteer version is compatible with Jest version</li>
-</ul>
-<p>App Performance Monitoring: Atatus</p>
-<ul>
-<p>Set up Atatus account, follow prompts, follow prompts to install.</p>
-</ul>
-<p>AWS</p>
-<ul>
-<li>Inspecting live page, go to Lighthouse (Navigation Mode) in Dev Tools to evaluate aptitude for becoming PWA.</li>
-<li>Adjust to meet all PWA Requirements.</li>
-<li>Any manifest requirements can be fixed in public/manifest.json, src/index.js, src/service-worker.js, src/serviceWorkerRegistration.js</li>
-</ul>
-<p>Adding Recharts</p>
-<ul>
-<li>Run "npm install --save recharts"</li>
-</ul>
+Technologies Used:
+React:
+
+1. The app is built using the Create React App (CRA) framework.
+2. Component-based architecture ensures modularity and reusability of UI elements.
+
+Serverless Architecture:
+
+1. AWS Lambda: Utilized for processing real-time data such as user searches for cities and events, manage authentication, and automatically scale based on user demand.
+2. Serverless Framework: Simplifies the deployment and management of AWS Lambda functions.
+3. API Gateway: Manages API requests and routes them to the appropriate Lambda functions.
+
+Authentication and Data Fetching:
+
+1. AWS Cognito: Manages user authentication and authorization.
+2. Google OAuth 2.0: Handles user authentication via Google's OAuth service, ensuring secure access to the Google Calendar API.
+3. Google Calendar API: Fetches event data, which is then processed and displayed by the app.
+
+State Management:
+
+1. React Hooks (useState, useEffect): Manage component state and side effects.
+
+Offline Capabilities:
+
+1. Service Workers: Enable the app to cache data and provide offline functionality, allowing users to access previously viewed events without an internet connection.
+
+Data Visualization:
+
+1. Recharts: A charting library built with React and D3, used to visualize event data in an interactive and user-friendly manner.
+
+Testing:
+
+1. Jest: A JavaScript testing framework used for writing and running unit tests.
+2. Puppeteer: Provides end-to-end testing capabilities, ensuring the app works as expected from the user’s perspective.
+3. jest-cucumber: Integrates Cucumber-style testing with Jest for behavior-driven development (BDD).
+
+Performance Monitoring:
+
+1. Atatus: A performance monitoring tool used to track and optimize the app's performance and user experience.
+   Why Serverless?
+   The serverless architecture is particularly well-suited for the Meet App because:
+
+Setup Instructions:
+Creating the Project:
+
+1. In terminal, create a new project: npx create-react-app meet --template cra-template-pwa --use-npm
+2. Navigate to the project directory: cd meet
+3. Start the development server: npm run start
+
+Deploying to GitHub Pages:
+
+1. Install the gh-pages package: npm install --save-dev gh-pages
+2. Create a new repository on GitHub.
+3. Add the repository to your project:
+   Add the homepage URL to the package.json file.
+   Add deployment scripts to the package.json file:
+   "scripts": {
+   "predeploy": "npm run build",
+   "deploy": "gh-pages -d build"
+   }
+4. Initialize the Git repository and push to GitHub:
+   git init
+   git remote add origin https://github.com/your-username/meet.git
+   git add .
+   git commit -m "First commit"
+   git branch -M main
+   git push -u origin main
+5. Deploy the app: 'npm run deploy'
+
+Setting Up OAuth with Google:
+
+1. Create a new project in the Google Developer Console.
+2. Add the Google Calendar API.
+3. Configure OAuth consent screen and add the required scope: https://www.googleapis.com/auth/calendar.events.public.readonly
+4. Switch envirnoment from "in testing" to "in production" when ready for general users.
+
+Setting Up AWS Lambda and Serverless Toolkit:
+
+1. Install the Serverless framework: npm install -g serverless
+2. Create a new Serverless service:
+   serverless create --template aws-nodejs --path auth-server
+   cd auth-server
+   npm init
+3. Configure AWS credentials:
+   serverless config credentials --provider aws --key ACCESS_KEY_ID --secret SECRET_ACCESS_KEY (change keys to what Google OAuth gave)
+4. Create config.json in the auth-server folder with your client ID and client secret from Google Calendar API.
+5. Set up serverless.yml with provider and functions sections.
+6. Install Google APIs package: npm install googleapis --save
+
+Local Testing:
+
+1. Test locally: serverless invoke local --function functionName
+2. Copy received URL fromAndIncluding "https://" untilButExcluding "\", paste into google and see if it works!
+3. Use the test user email set up in Google OAuth.
+
+Deploying Functions:
+
+1. Deploy functions: serverless deploy
+2. Check that functions deployed correctly in AWS Management Console, deployed Lambda Functions.
+3. OAuth2 Serverless Functions
+   getAuthURL
+   getAccessToken
+   getCalendarEvents
+
+Testing:
+
+1. Set up local Node.js HTTP server: npm install http-server -g
+2. Create a static site for testing serverless functions: mkdir static-test-site.
+3. Test the static site by running: http-server.
+4. Code for token code input is found in Meet app's URL after "code="
+
+TDD and Acceptance Testing:
+
+1. Write tests in App.test.js using Jest.
+2. Run tests: npm run test
+3. Check coverage: npm test -- --coverage
+   goal is 70-100%
+4. When beginning Acceptance Tests, run "npm run test" with defineFeature() block empty; error message provides needed code.
+
+End-to-End Testing:
+
+1. Install Puppeteer: npm install --save-dev puppeteer
+2. Start the local app: npm run start
+3. Run tests: npm run test
+
+App Performance Monitoring:
+
+1. Set up an Atatus account and follow installation prompts.
+
+PWA/Recharts:
+
+1. Evaluate PWA readiness using Lighthouse in Chrome DevTools.
+2. Adjust manifest.json, index.js, service-worker.js, and serviceWorkerRegistration.js as needed.
+3. Install Recharts: npm install --save recharts

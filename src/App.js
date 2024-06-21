@@ -5,6 +5,7 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 
 import './App.css';
 import spinningGlobe from './spinning_globe.gif';
@@ -145,6 +146,7 @@ const App = () => {
         setErrorAlert={setErrorAlert}
       />
       <div className="charts-container">
+        {events.length > 0 && <EventGenresChart events={events} />}
         {allLocations.length > 0 && events.length > 0 && (
           <CityEventsChart allLocations={allLocations} events={events} />
         )}
