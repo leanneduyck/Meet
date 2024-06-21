@@ -1,3 +1,6 @@
+Overview:
+The Meet App allows users to search for events, customize search results, view event details, visualize data with charts, and use certain features offline. It fetches event data from CareerFoundry's Google Calendar API.
+
 Key Features:
 
 1. City Search: Users can search for events by city.
@@ -92,34 +95,17 @@ When the user clicks/selects the chart button.
 Then the user sees a chart displaying previously searched data (cities, number of events).
 
 Technologies Used:
-React:
 
-1. The app is built using the Create React App (CRA) framework.
-2. Component-based architecture ensures modularity and reusability of UI elements.
-
-Serverless Architecture:
-
-1. AWS Lambda: Utilized for processing real-time data such as user searches for cities and events, manage authentication, and automatically scale based on user demand.
-2. Serverless Framework: Simplifies the deployment and management of AWS Lambda functions.
-3. API Gateway: Manages API requests and routes them to the appropriate Lambda functions.
-
-Authentication and Data Fetching:
-
-1. AWS Cognito: Manages user authentication and authorization.
-2. Google OAuth 2.0: Handles user authentication via Google's OAuth service, ensuring secure access to the Google Calendar API.
-3. Google Calendar API: Fetches event data, which is then processed and displayed by the app.
-
-State Management:
-
-1. React Hooks (useState, useEffect): Manage component state and side effects.
-
-Offline Capabilities:
-
-1. Service Workers: Enable the app to cache data and provide offline functionality, allowing users to access previously viewed events without an internet connection.
-
-Data Visualization:
-
-1. Recharts: A charting library built with React and D3, used to visualize event data in an interactive and user-friendly manner.
+1. React: Built with Create React App (CRA).
+2. Recharts: Used for data visualization with charts.
+3. AWS Lambda: Utilized for processing real-time data such as user searches for cities and events, manage authentication, and automatically scale based on user demand.
+4. Serverless Framework: Simplifies the deployment and management of AWS Lambda functions.
+5. API Gateway: Manages API requests and routes them to the appropriate Lambda functions.
+6. AWS Cognito: Manages user authentication and authorization.
+7. Google OAuth 2.0: Handles user authentication via Google's OAuth service, ensuring secure access to the Google Calendar API.
+8. Google Calendar API: Fetches event data, which is then processed and displayed by the app.
+9. React Hooks (useState, useEffect): Manage component state and side effects.
+10. Service Workers: Enable the app to cache data and provide offline functionality, allowing users to access previously viewed events without an internet connection.
 
 Testing:
 
@@ -225,3 +211,9 @@ PWA/Recharts:
 1. Evaluate PWA readiness using Lighthouse in Chrome DevTools.
 2. Adjust manifest.json, index.js, service-worker.js, and serviceWorkerRegistration.js as needed.
 3. Install Recharts: npm install --save recharts
+
+Deploying to Vercel:
+1.Install Vercel CLI: If not already installed, install the Vercel CLI globally:
+npm install -g vercel 2. Build the App: Ensure your app is built and ready for deployment:
+npm run build 3. Deploy to Vercel: Deploy the app using Vercel CLI. Navigate to your project directory and run:
+vercel 4. Follow Deployment Prompts: Vercel CLI will prompt you to log in or sign up if you haven't already. Follow the prompts to deploy the app. 5. Configure Deployment Settings: Configure your deployment settings as prompted by Vercel, including project name, environment variables, and domain settings. 6. Access Your App: Once deployed, Vercel will provide you with a URL where your Meet App is live.
