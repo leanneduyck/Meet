@@ -16,6 +16,7 @@ const CityEventsChart = ({ allLocations, events }) => {
 
   useEffect(() => {
     setData(getData());
+    // eslint-disable-next-line
   }, [allLocations, events]);
 
   const getData = () => {
@@ -39,7 +40,7 @@ const CityEventsChart = ({ allLocations, events }) => {
         margin={{
           top: 20,
           right: 40,
-          bottom: 60,
+          bottom: 80,
           left: -30,
         }}
       >
