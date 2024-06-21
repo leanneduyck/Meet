@@ -165,3 +165,7 @@ Then the user sees a chart displaying previously searched data (cities, number o
 <li>Adjust to meet all PWA Requirements.</li>
 <li>Any manifest requirements can be fixed in public/manifest.json, src/index.js, src/service-worker.js, src/serviceWorkerRegistration.js</li>
 </ul>
+<p>Adding Recharts</p>
+<ul>
+<li>Run "npm install --save recharts"</li>
+</ul>

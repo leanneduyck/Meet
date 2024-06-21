@@ -4,6 +4,7 @@ import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
+import CityEventsChart from './components/CityEventsChart';
 
 import './App.css';
 import spinningGlobe from './spinning_globe.gif';
@@ -143,6 +144,12 @@ const App = () => {
         updateEvents={(count) => setCurrentNOE(count)}
         setErrorAlert={setErrorAlert}
       />
+      <div className="charts-container">
+        {allLocations.length > 0 && events.length > 0 && (
+          <CityEventsChart allLocations={allLocations} events={events} />
+        )}
+      </div>
+
       <EventList events={events} />
     </div>
   );
