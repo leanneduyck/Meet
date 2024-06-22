@@ -36,6 +36,7 @@ h1 {
   text-shadow: -1.5px -1.5px 0 #99c1e5;
 }
 
+/* search inputs */
 input[type="text"],
 input[type="number"] {
   background-color: #487dac;
@@ -62,6 +63,7 @@ input[type="number"]::placeholder {
   width: 250px;
 }
 
+/* search bar */
 #city-search {
   display: flex;
   flex-direction: column;
@@ -99,6 +101,7 @@ input[type="number"]::placeholder {
   cursor: pointer;
 }
 
+/* event items */
 .event {
   background-color: #f4fafe;
   opacity: 0.9;
@@ -129,6 +132,7 @@ input[type="number"]::placeholder {
   font-size: 120%;
 }
 
+/* alert container  */
 .alerts-container {
   position: fixed;
   top: 0px;
@@ -137,6 +141,7 @@ input[type="number"]::placeholder {
   z-index: 1000;
 }
 
+/* chart container  */
 .charts-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -154,5 +159,31 @@ input[type="number"]::placeholder {
 @media (max-width: 768px) {
   .charts-container {
     grid-template-columns: 1fr;
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.spinner {
+  width: 50px;
+  aspect-ratio: 1;
+  --c: no-repeat radial-gradient(farthest-side, #514b82 92%, #0000);
+  background: var(--c) 50% 0, var(--c) 50% 100%, var(--c) 100% 50%,
+    var(--c) 0 50%;
+  background-size: 10px 10px;
+  animation: l18 1s infinite;
+  position: relative;
+}
+.spinner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: 3px;
+  background: repeating-conic-gradient(#0000 0 35deg, #514b82 0 90deg);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 3px), #000 0);
+  border-radius: 50%;
+}
+@keyframes l18 {
+  100% {
+    transform: rotate(0.5turn);
   }
 }

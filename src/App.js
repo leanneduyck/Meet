@@ -91,8 +91,10 @@ const App = () => {
   const [infoAlert, setInfoAlert] = useState('');
   const [errorAlert, setErrorAlert] = useState('');
   const [warningAlert, setWarningAlert] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const fetchData = useCallback(async () => {
+    setLoading(true);
     const allEvents = await getEvents();
     const filteredEvents =
       currentCity === 'See all cities'
@@ -100,6 +102,7 @@ const App = () => {
         : allEvents.filter((event) => event.location === currentCity);
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
+    setLoading(false);
   }, [currentCity, currentNOE]);
 
   useEffect(() => {
@@ -145,13 +148,16 @@ const App = () => {
         updateEvents={(count) => setCurrentNOE(count)}
         setErrorAlert={setErrorAlert}
       />
-      <div className="charts-container">
-        {events.length > 0 && <EventGenresChart events={events} />}
-        {allLocations.length > 0 && events.length > 0 && (
-          <CityEventsChart allLocations={allLocations} events={events} />
-        )}
-      </div>
-
+      {loading ? (
+        <div className="spinner"></div>
+      ) : (
+        <div className="charts-container">
+          {events.length > 0 && <EventGenresChart events={events} />}
+          {allLocations.length > 0 && events.length > 0 && (
+            <CityEventsChart allLocations={allLocations} events={events} />
+          )}
+        </div>
+      )}
       <EventList events={events} />
     </div>
   );
