@@ -47,6 +47,7 @@ const getEvents = async () => {
 // gets the token from local storage or redirects the user to the Google OAuth URL
 const getAccessToken = async () => {
   const accessToken = sessionStorage.getItem('access_token');
+  console.log({ accessToken });
   if (accessToken) {
     return accessToken;
   } else {

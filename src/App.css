@@ -162,7 +162,7 @@ input[type="number"]::placeholder {
   }
 }
 
-/* HTML: <div class="loader"></div> */
+/* loading spinner */
 .spinner {
   width: 50px;
   aspect-ratio: 1;
@@ -171,7 +171,9 @@ input[type="number"]::placeholder {
     var(--c) 0 50%;
   background-size: 10px 10px;
   animation: l18 1s infinite;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .spinner::before {
   content: "";
