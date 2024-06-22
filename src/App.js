@@ -51,12 +51,12 @@ const getAccessToken = async () => {
   if (accessToken) {
     return accessToken;
   } else {
-    const code = new URLSearchParams(window.location.search).get('code');
-    if (code) {
-      return getToken(code);
-    } else {
-      redirectToAuthUrl();
-    }
+    // const code = new URLSearchParams(window.location.search).get('code');
+    // if (code) {
+    //   return getToken(code);
+    // } else {
+    redirectToAuthUrl();
+    // }
   }
 };
 
