@@ -1,7 +1,7 @@
 const { InjectManifest } = require('workbox-webpack-plugin');
 const { override } = require('customize-cra');
 
-module.exports = override(config, env) {
+module.exports = override((config, env) => {
   // change the entry point to src/index.js
   config.output.publicPath = '';
 
@@ -20,4 +20,4 @@ module.exports = override(config, env) {
   );
 
   return config;
-};
+});
