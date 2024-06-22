@@ -54,7 +54,7 @@ const getAccessToken = async () => {
     if (code) {
       return getToken(code);
     } else {
-      redirectToAuthUrl(); //TODO: Add button in html to call this when login fails
+      redirectToAuthUrl();
     }
   }
 };
@@ -135,8 +135,11 @@ const App = () => {
         {errorAlert && <ErrorAlert text={errorAlert} />}
         {warningAlert && <WarningAlert text={warningAlert} />}
       </div>
-      <button onClick={redirectToAuthUrl}>Force Login</button>
+
       <h1>Meet App</h1>
+      <button className="details-btn" onClick={redirectToAuthUrl}>
+        Force Login
+      </button>
       <CitySearch
         allLocations={allLocations}
         setCurrentCity={handleCurrentCityChange}
