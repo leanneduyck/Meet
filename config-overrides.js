@@ -14,7 +14,7 @@ module.exports = override((config, env) => {
 
   config.plugins.push(
     new InjectManifest({
-      swSrc: './src/service-worker.js', // Path to your custom service worker
+      swSrc: './public/service-worker.js', // Path to your custom service worker
       swDest: 'service-worker.js', // Output service worker filename
     })
   );
