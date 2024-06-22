@@ -15,6 +15,7 @@ export function register(config) {
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      console.log({ swUrl, url: process.env.PUBLIC_URL });
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
