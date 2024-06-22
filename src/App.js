@@ -137,7 +137,7 @@ const App = () => {
       </div>
 
       <h1>Meet App</h1>
-      <button className="details-btn" onClick={redirectToAuthUrl}>
+      <button className="event" onClick={redirectToAuthUrl}>
         Force Login
       </button>
       <CitySearch
