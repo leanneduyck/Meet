@@ -46,18 +46,17 @@ const getEvents = async () => {
 
 // gets the token from local storage or redirects the user to the Google OAuth URL
 const getAccessToken = async () => {
-  const accessToken = sessionStorage.getItem('access_token');
-  console.log({ accessToken });
-  if (accessToken) {
-    return accessToken;
-  } else {
-    const code = new URLSearchParams(window.location.search).get('code');
-    if (code) {
-      return getToken(code);
-    } else {
-      redirectToAuthUrl();
-    }
-  }
+  // const accessToken = sessionStorage.getItem('access_token');
+  // if (accessToken) {
+  //   return accessToken;
+  // } else {
+  //   const code = new URLSearchParams(window.location.search).get('code');
+  //   if (code) {
+  //     return getToken(code);
+  //   } else {
+  redirectToAuthUrl(); //TODO: Add button in html to call this when login fails
+  //   }
+  // }
 };
 
 // redirects the user to the Google OAuth URL
