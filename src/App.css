@@ -132,6 +132,17 @@ input[type="number"]::placeholder {
   font-size: 120%;
 }
 
+.force-login {
+  background-color: #487dac;
+  color: #f4fafe;
+  padding: 5px 8px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #f4fafe;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
 /* alert container  */
 .alerts-container {
   position: fixed;
@@ -163,7 +174,7 @@ input[type="number"]::placeholder {
 }
 
 /* loading spinner */
-.spinner {
+.loading-spinner {
   width: 50px;
   aspect-ratio: 1;
   --c: no-repeat radial-gradient(farthest-side, #514b82 92%, #0000);

@@ -137,7 +137,7 @@ const App = () => {
       </div>
 
       <h1>Meet App</h1>
-      <button className="event" onClick={redirectToAuthUrl}>
+      <button className="force-login" onClick={redirectToAuthUrl}>
         Force Login
       </button>
       <CitySearch
@@ -153,7 +153,7 @@ const App = () => {
         setErrorAlert={setErrorAlert}
       />
       {loading ? (
-        <div className="spinner"></div>
+        <div className="loading-spinner"></div>
       ) : (
         <div className="charts-container">
           {events.length > 0 && <EventGenresChart events={events} />}
