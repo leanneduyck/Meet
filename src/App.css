@@ -152,27 +152,12 @@ input[type="number"]::placeholder {
   z-index: 1000;
 }
 
-/* chart container  */
-/* .charts-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
-  background-color: #f4fafe;
-  opacity: 0.9;
-  padding: 10px 10px 35px;
-  margin-bottom: 10px;
-  text-align: left;
-  border: 1px solid #f4fafe;
-  border-radius: 4px;
-  position: relative;
-} */
-
 .charts-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px; /* Adjust as necessary */
-  background-color: #f4fafe; /* Ensure this container has a background for the spinner to contrast */
+  min-height: 200px;
+  background-color: #f4fafe;
   opacity: 0.9;
   padding: 10px;
   margin-bottom: 10px;
