@@ -162,6 +162,17 @@ const App = () => {
         </div>
       )}
       <EventList events={events} />
+      <p className="mt-auto mb-3 text-center" style={{ color: '#487dac' }}>
+        Designed and developed by:{' '}
+        <a
+          href="https://portfolio-leanneduyck.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: 'none', color: '#487dac' }}
+        >
+          Leanne Duyck
+        </a>
+      </p>
     </div>
   );
 };
