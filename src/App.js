@@ -136,9 +136,9 @@ const App = () => {
         {warningAlert && <WarningAlert text={warningAlert} />}
       </div>
       <h1>Meet App</h1>
-      <button className="force-login" onClick={redirectToAuthUrl}>
+      {/* <button className="force-login" onClick={redirectToAuthUrl}>
         Force Login
-      </button>
+      </button> */}
       <CitySearch
         allLocations={allLocations}
         setCurrentCity={handleCurrentCityChange}
@@ -165,10 +165,10 @@ const App = () => {
       <p className="mt-auto mb-3 text-center" style={{ color: '#487dac' }}>
         Designed and developed by:{' '}
         <a
+          className="portfolio-link"
           href="https://portfolio-leanneduyck.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ textDecoration: 'none', color: '#487dac' }}
         >
           Leanne Duyck
         </a>

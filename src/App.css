@@ -202,3 +202,13 @@ input[type="number"]::placeholder {
     transform: rotate(0.5turn);
   }
 }
+
+.portfolio-link {
+  color: #487dac;
+  text-decoration: none;
+}
+
+.portfolio-link:hover {
+  text-decoration: underline;
+  font-size: 120%;
+}
