@@ -1,5 +1,5 @@
 Overview:
-The Meet App allows users to search for events, customize search results, view event details, visualize data with charts, and use certain features offline. It fetches event data from CareerFoundry's Google Calendar API.
+The Meet App is an event management tool built using React and deployed as a PWA. It integrates Google Calendar API for real-time event data retrieval, AWS Lambda for serverless processing, and secure user authentication via Google OAuth 2.0. Recharts provides users with dynamic data visualization. Testing is facilitated by Puppeteer and Jest. It allows users to search for events, customize search results, view event details, visualize data with charts, and use certain features offline.
 
 Key Features:
 
