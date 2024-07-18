@@ -223,12 +223,12 @@ PWA/Recharts:
 3. Install Recharts: npm install --save recharts
 
 Deploying to Vercel:
-1.Install Vercel CLI: If not already installed, install the Vercel CLI globally:
-npm install -g vercel 
-2. Build the App: Ensure your app is built and ready for deployment:
-npm run build 
-3. Deploy to Vercel: Deploy the app using Vercel CLI. Navigate to your project directory and run:
-vercel 
-4. Follow Deployment Prompts: Vercel CLI will prompt you to log in or sign up if you haven't already. Follow the prompts to deploy the app. 
-5. Configure Deployment Settings: Configure your deployment settings as prompted by Vercel, including project name, environment variables, and domain settings. 
-6. Access Your App: Once deployed, Vercel will provide you with a URL where your Meet App is live.
+<p>1.Install Vercel CLI: If not already installed, install the Vercel CLI globally:
+npm install -g vercel</p> 
+<p>2. Build the App: Ensure your app is built and ready for deployment:
+npm run build</p> 
+<p>3. Deploy to Vercel: Deploy the app using Vercel CLI. Navigate to your project directory and run:
+vercel</p> 
+<p>4. Follow Deployment Prompts: Vercel CLI will prompt you to log in or sign up if you haven't already. Follow the prompts to deploy the app.</p> 
+<p>5. Configure Deployment Settings: Configure your deployment settings as prompted by Vercel, including project name, environment variables, and domain settings.</p> 
+<p>6. Access Your App: Once deployed, Vercel will provide you with a URL where your Meet App is live.</p>
