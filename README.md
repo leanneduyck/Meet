@@ -96,16 +96,26 @@ Then the user sees a chart displaying previously searched data (cities, number o
 
 Technologies Used:
 
-1. React: Built with Create React App (CRA).
+1. React: Built with Create React App (CRA) for building user interfaces.
 2. Recharts: Used for data visualization with charts.
-3. AWS Lambda: Utilized for processing real-time data such as user searches for cities and events, manage authentication, and automatically scale based on user demand.
+3. AWS Lambda: Utilized for processing real-time data, managing authentication, and scaling based on user demand.
 4. Serverless Framework: Simplifies the deployment and management of AWS Lambda functions.
 5. API Gateway: Manages API requests and routes them to the appropriate Lambda functions.
 6. AWS Cognito: Manages user authentication and authorization.
-7. Google OAuth 2.0: Handles user authentication via Google's OAuth service, ensuring secure access to the Google Calendar API.
-8. Google Calendar API: Fetches event data, which is then processed and displayed by the app.
+7. Google OAuth 2.0: Handles user authentication via Google's OAuth service for secure access to the Google Calendar API.
+8. Google Calendar API: Fetches event data, processed and displayed by the app.
 9. React Hooks (useState, useEffect): Manage component state and side effects.
-10. Service Workers: Enable the app to cache data and provide offline functionality, allowing users to access previously viewed events without an internet connection.
+10. Service Workers: Enable the app to cache data and provide offline functionality.
+11. Atatus SPA: Online performance monitoring tool for Single Page Applications.
+12. JS-Cookie: For managing cookies.
+13. Workbox: Set of libraries and node_modules to easily cache assets and used to easily build PWA’s.
+14. Testing Libraries: jest-cucumber, puppeteer
+15. Babel: JavaScript compiler.
+16. Parcel: Bundler for packaging the application code.
+17. React App Rewired: Allows customizing Create React App configuration without ejecting.
+18. Webpack: Module bundler.
+19. GitHub Pages: Deployed via Vercel.
+
 
 Testing:
 
@@ -214,6 +224,11 @@ PWA/Recharts:
 
 Deploying to Vercel:
 1.Install Vercel CLI: If not already installed, install the Vercel CLI globally:
-npm install -g vercel 2. Build the App: Ensure your app is built and ready for deployment:
-npm run build 3. Deploy to Vercel: Deploy the app using Vercel CLI. Navigate to your project directory and run:
-vercel 4. Follow Deployment Prompts: Vercel CLI will prompt you to log in or sign up if you haven't already. Follow the prompts to deploy the app. 5. Configure Deployment Settings: Configure your deployment settings as prompted by Vercel, including project name, environment variables, and domain settings. 6. Access Your App: Once deployed, Vercel will provide you with a URL where your Meet App is live.
+npm install -g vercel 
+2. Build the App: Ensure your app is built and ready for deployment:
+npm run build 
+3. Deploy to Vercel: Deploy the app using Vercel CLI. Navigate to your project directory and run:
+vercel 
+4. Follow Deployment Prompts: Vercel CLI will prompt you to log in or sign up if you haven't already. Follow the prompts to deploy the app. 
+5. Configure Deployment Settings: Configure your deployment settings as prompted by Vercel, including project name, environment variables, and domain settings. 
+6. Access Your App: Once deployed, Vercel will provide you with a URL where your Meet App is live.
