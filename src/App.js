@@ -163,10 +163,10 @@ const App = () => {
       )}
       <EventList events={events} />
       <p className="mt-auto mb-3 text-center" style={{ color: '#487dac' }}>
-        Designed and developed by:{' '}
+        designed and developed by:{' '}
         <a
           className="portfolio-link"
-          href="https://portfolio-leanneduyck.vercel.app/"
+          href="https://leanneduyck.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
